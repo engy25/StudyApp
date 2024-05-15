@@ -1,0 +1,214 @@
+{
+  "menu": [
+    {
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "dashboard",
+      "badge": [
+        "primary",
+        "1"
+      ],
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Analytics",
+          "slug": "dashboard-analytics"
+        }
+      ]
+    },
+
+    {
+      "menuHeader": "Apps & Pages"
+    },
+
+    {
+      "name": "Deliveries",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "app-user",
+
+      "submenu": [
+        {
+          "url": "deliveries",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+
+      ]
+    },
+
+
+
+    {
+      "name": "Roles & Permissions",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": "app-access",
+     "permissions": ["view roles"],
+      "submenu": [
+        {
+          "url": "roles",
+          "name": "Roles",
+          "slug": "app-access-roles"
+        },
+        {
+          "url": "permissions",
+          "name": "Permission",
+          "slug": "app-access-permission"
+        }
+      ]
+    },
+
+    {
+      "name":  "Categories",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "categories",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+    {
+      "name":  "Services",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "services",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+    {
+      "name":  "Countries",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+      "permissions": ["view Countries"],
+      "submenu": [
+        {
+          "url": "countries",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+    {
+      "name":"Cities",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+      "permissions": ["view Cities"],
+      "submenu": [
+        {
+          "url": "cities",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+    {
+      "name":  "Districts",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+      "permissions": ["view Districts"],
+      "submenu": [
+        {
+          "url": "districts",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+    {
+      "name":  "Vechiles",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "brands",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+    {
+      "name":  "Colors",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "colors",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+
+
+    {
+      "name":  "Pricings",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "pricings",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+    {
+      "name":  "Orders",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "orders",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+
+
+
+
+    {
+      "menuHeader": "Misc"
+    },
+    {
+
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
+      "name": "Support",
+      "slug": "support",
+      "target": "_blank"
+    },
+    {
+
+      "icon": "menu-icon tf-icons ti ti-file-description",
+      "name": "Documentation",
+      "slug": "documentation",
+      "target": "_blank"
+    }
+  ]
+}
