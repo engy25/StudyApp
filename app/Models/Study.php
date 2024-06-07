@@ -33,7 +33,7 @@ class Study extends Model
 
     public function getIconAttribute()
     {
-      $image = isset($this->attributes['icon']) && $this->attributes['image'] ? 'storage/app/public/images/studyIcon/' . $this->attributes['icon'] : asset('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y');
+      $image = 'storage/app/public/images/studyIcon/' . $this->attributes['icon'];
       return asset($image);
     }
 

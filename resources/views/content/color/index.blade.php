@@ -59,8 +59,6 @@ $i=0;
   <div class="card-body">
     <div class="table-responsive">
    @include("content.color.pagination_index")
-
-
     </div>
   </div>
 </div>

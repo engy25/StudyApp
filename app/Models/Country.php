@@ -45,32 +45,25 @@ class Country extends Model implements TranslatableContract
 
 
 
+  public function setFlagAttribute($value)
+  {
+    if ($value && $value->isValid()) {
+      if (isset($this->attributes['flag']) && $this->attributes['flag']) {
+
+
+        if (file_exists(public_path('storage/app/public/images/countryFlag/' . $this->attributes['flag']))) {
+          \File::delete(public_path('storage/app/public/images/countryFlag/' . $this->attributes['flag']));
+        }
+      }
+
+      $helper = new Helpers();
+      $image = $helper->upload_single_file($value, 'app/public/images/countryFlag/');
 
 
 
-
-
-
-
-  // public function setFlagAttribute($value)
-  // {
-  //   if ($value && $value->isValid()) {
-  //     if (isset($this->attributes['flag']) && $this->attributes['flag']) {
-
-
-  //       if (file_exists(public_path('storage/app/public/images/countryFlag/' . $this->attributes['flag']))) {
-  //         \File::delete(public_path('storage/app/public/images/countryFlag/' . $this->attributes['flag']));
-  //       }
-  //     }
-
-  //     $helper = new Helpers();
-  //     $image = $helper->upload_single_file($value, 'app/public/images/countryFlag/');
-
-
-
-  //     $this->attributes['flag'] = $image;
-  //   }
-  // }
+      $this->attributes['flag'] = $image;
+    }
+  }
 
 
   public function getFlagAttribute()

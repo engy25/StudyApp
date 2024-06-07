@@ -35,8 +35,8 @@ return [
   'auth_password_updated_success' => 'Password Updated Successfully',
   'auth_data_retreive_success' => 'Data Retreived Successfully',
   'auth_data_stored_success' => 'Added Successfully',
-  'product_favourite_delete_success' => 'Favourite Deleted Successfully',
-  'product_favourite_added_success' => 'Favourite Added Successfully',
+  'favourite_delete_success' => 'Favourite Deleted Successfully',
+  'favourite_added_success' => 'Favourite Added Successfully',
   'favourite_not_found' => 'Favourite Not Found',
   'data_deleted_successfully' => 'Data Deleted Successfully',
   'notif_deleted_successfully' => 'Notification Deleted Successfully',
@@ -152,5 +152,11 @@ return [
   "you_changed_driver_successfully"=>"You Changed The Driver Successfully",
   "driver_not_assigned_order_expired"=>"Driver not assigned order expired",
   "cannotcancel"=>"Your trip has already started, you cannot cancel",
-  "successfully"=>"Successfully"
+  "successfully"=>"Successfully",
+  "like_delete_success"=>"Like Deleted Successfully",
+  "like_added_success"=>"Like Added Successfully",
+  "Selected_id_invalid_to_share"=>"The selected id is invalid for the share type.",
+  "Selected_id_invalid_to_feed"=>"The selected id is invalid for the feed type.",
+  "comment_added_success"=>"Comment Added Successfully",
+  "share_added_success"=>"Share Added Successfully",
 ];

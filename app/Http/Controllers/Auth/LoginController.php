@@ -45,7 +45,7 @@ class LoginController extends Controller
 
         // Custom conditions to check before allowing login
         $credentials = $request->only($this->username(), 'password');
-       
+
         // Add your custom logic here
 
 

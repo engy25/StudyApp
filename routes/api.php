@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{
   AuthController,
   User\ProfileController,
-  // User\FavouriteController,
-  User\NotificationController
+  User\HomeController,
+  User\NotificationController,
+  User\GoalsController,
+  User\FeedsController
 
 };
 
@@ -30,6 +32,7 @@ use App\Http\Controllers\Api\{
 
 
 Route::namespace('Api')->middleware('setLocale')->group(function () {
+
 
 
   Route::post("push-subscribe", [NotificationController::class, "pushSubscribe"]);  ///push notification
@@ -101,6 +104,33 @@ Route::namespace('Api')->middleware(['setLocale'])->group(function () {
     Route::post('delete-account', [ProfileController::class, 'deleteAccount']); ////Delete Account
 
     Route::post('logout', [AuthController::class, 'logout']);  /////logout
+
+    /**************************************Home********************************************/
+
+    Route::get("home",[HomeController::class,"index"]);
+
+    /************************************************************************************************************/
+
+    /**************************************Goals********************************************/
+
+    Route::post("set-goal",[GoalsController::class,"setGoal"]);
+
+    /************************************************************************************************************/
+
+    /**************************************Feeds********************************************/
+    Route::post("create-post",[FeedsController::class,"createPost"]);
+    Route::post("make-like",[FeedsController::class,"makeLike"]);
+    Route::post("make-comment",[FeedsController::class,"makeComment"]);
+    Route::post("add-favoutrite",[FeedsController::class,"AddToFavourite"]);
+    Route::post("make-share",[FeedsController::class,"makeShare"]);
+    Route::get("posts",[FeedsController::class,"indexPost"]);
+    Route::get("search-user/{keyword}",[FeedsController::class,"searchUser"]);
+
+
+
+
+
+
 
 
 

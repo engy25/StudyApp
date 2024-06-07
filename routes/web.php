@@ -19,15 +19,15 @@ use App\Http\Controllers\dashboard\Admin\{
 
 };
 use App\Http\Controllers\dashboard\DataEntry\{
-
-
   RoleController,
   PermissionController,
   ColorController,
-  CategoryController
+  CategoryController,
+  StudyController
 
 
 };
+
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -127,6 +127,11 @@ Route::group(
      /*------------------------------------------------------------------------- */
 
 
+     /*******************Studies *****************/
+     Route::Resource('studies', StudyController::class);
+     Route::get("/pagination/paginate-study", [StudyController::class, "paginationStudy"]);
+     Route::get('/search-study', [StudyController::class, 'searchStudy'])->name('search.study');
+          /*------------------------------------------------------------------------- */
 
 
     /*******************Colors *****************/

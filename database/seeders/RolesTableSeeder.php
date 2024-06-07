@@ -17,9 +17,9 @@ class RolesTableSeeder extends Seeder
     {
 
       $dataEntryRole=DB::table('roles')->insert([
-        ['name'=>'Admin','guard_name'=>'web'],
-        ['name'=>'User','guard_name'=>'api'],
-        ['name' => 'DataEntry','guard_name'=> 'web'],
+        ['name'=>'Admin','guard_name'=>'web', 'created_at' => now()],
+        ['name'=>'User','guard_name'=>'api', 'created_at' => now()],
+        ['name' => 'DataEntry','guard_name'=> 'web', 'created_at' => now()],
         // Add more roles as needed
     ]);
 

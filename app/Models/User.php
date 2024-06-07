@@ -13,8 +13,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-use App\Models\Scopes\UserScope;
+
 
 class User extends Authenticatable
 {
@@ -37,7 +38,10 @@ class User extends Authenticatable
     //'password' => 'hashed',
   ];
 
-
+  public function token(): HasOne
+  {
+      return $this->hasOne(\Laravel\Passport\Token::class, 'user_id');
+  }
 
 
 
@@ -103,6 +107,11 @@ class User extends Authenticatable
     return $this->hasMany(Device::class);
   }
 
+  public function feeds()
+  {
+
+    return $this->hasMany(Feed::class,"user_id");
+  }
 
 
   public function providers()

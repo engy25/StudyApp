@@ -35,8 +35,8 @@ return [
   'auth_password_updated_success' => 'تم تحديث الرقم السري بنجاح',
   'auth_data_retreive_success' => 'تم استرجاع البيانات بنجاح',
   'auth_data_stored_success' => 'تمت الاضافه بنجاح',
-  'product_favourite_delete_success' => 'تمت ازالة المفضله بنجاح',
-  'product_favourite_added_success' => 'تمت اضافه المفضله بنجاح',
+  'favourite_delete_success' => 'تمت ازالة المفضله بنجاح',
+  'favourite_added_success' => 'تمت اضافه المفضله بنجاح',
   'favourite_not_found' => 'المفضله ليست موجوده',
   'data_deleted_successfully' => 'تم مسح البيانات بنجاح',
   'notif_deleted_successfully' => 'تم مسح الاشعار بنجاح',
@@ -128,6 +128,12 @@ return [
   'you_accepted_the_order_successfully' => "تم قبول الطلب بنجاح",
   "driver_not_assigned_order_expired"=>"انتهت صلاحية الطلب الذي لم يتم تعيينه للسائق",
   "cannotcancel"=>"رحلتك بدات بالفعل لا يمكنك الالغاء",
-  "successfully">"بنجاح"
+  "successfully">"بنجاح",
+  "like_delete_success"=>"لقد قمت بازاله الاعجاب",
+  "like_added_success"=>"لقد قمت بوضع الاعجاب",
+  "Selected_id_invalid_to_share"=>"المعرف المحدد غير صالح لنوع المشاركة.",
+  "Selected_id_invalid_to_feed"=>"المعرف المحدد غير صالح لنوع البوست.",
+  "comment_added_success"=>"تم اضافه التعليق بنجاح",
+  "share_added_success"=>"تم اضافه المشاركه بنجاح",
 ];
 

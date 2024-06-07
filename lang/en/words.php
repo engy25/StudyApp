@@ -85,7 +85,8 @@ return [
   "tax"=>"Tax",
   "salary"=>"SALARY",
   "ordernumber"=>"orderNumber",
-  "tax_percentage"=>"Tax percentage"
+  "tax_percentage"=>"Tax percentage",
+  "icon"=>"icon"
 
 
 

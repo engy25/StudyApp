@@ -21,22 +21,6 @@
       "menuHeader": "Apps & Pages"
     },
 
-    {
-      "name": "Deliveries",
-      "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "app-user",
-
-      "submenu": [
-        {
-          "url": "deliveries",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-
-      ]
-    },
-
-
 
     {
       "name": "Roles & Permissions",
@@ -72,19 +56,7 @@
     },
 
 
-    {
-      "name":  "Services",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "app-user-view",
 
-      "submenu": [
-        {
-          "url": "services",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-      ]
-    },
 
 
     {
@@ -101,47 +73,22 @@
       ]
     },
 
+
     {
-      "name":"Cities",
+      "name":  "Studies",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
-      "permissions": ["view Cities"],
+
       "submenu": [
         {
-          "url": "cities",
+          "url": "studies",
           "name": "List",
           "slug": "app-user-list"
         }
       ]
     },
 
-    {
-      "name":  "Districts",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "app-user-view",
-      "permissions": ["view Districts"],
-      "submenu": [
-        {
-          "url": "districts",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-      ]
-    },
 
-    {
-      "name":  "Vechiles",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "app-user-view",
-
-      "submenu": [
-        {
-          "url": "brands",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-      ]
-    },
     {
       "name":  "Colors",
       "icon": "menu-icon tf-icons ti ti-smart-home",
@@ -156,37 +103,6 @@
       ]
     },
 
-
-
-
-    {
-      "name":  "Pricings",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "app-user-view",
-
-      "submenu": [
-        {
-          "url": "pricings",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-      ]
-    },
-
-
-    {
-      "name":  "Orders",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "app-user-view",
-
-      "submenu": [
-        {
-          "url": "orders",
-          "name": "List",
-          "slug": "app-user-list"
-        }
-      ]
-    },
 
 
 

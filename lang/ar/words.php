@@ -84,5 +84,5 @@ return [
   "salary"=>"المال المدفوع",
   "ordernumber"=>"رقم الطلب",
   "tax_percentage"=>"نسبة الضريبة"
-
+,  "icon"=>"ايقونه"
 ];

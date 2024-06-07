@@ -18,7 +18,7 @@
   <div class="d-flex align-items-center">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <a href="{{ route('cities.create') }}" class="btn btn-primary me-2" data-bs-toggle="modal"
+    <a href="#" class="btn btn-primary me-2" data-bs-toggle="modal"
       data-bs-target="#addpermissionModal" title="{{ trans('words.add') }}">
       {{ trans('words.add') }}
     </a>
