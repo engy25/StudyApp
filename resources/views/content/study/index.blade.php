@@ -52,6 +52,14 @@
 </div>
 
 
+@if($message= Session::get('success'))
+<div class="alert alert-success">
+  <p>
+    {{ $message }}
+  </p>
+
+</div>
+@endif
 
 <div class="alert alert-success" style="display: none;" id="success2">
   Study Updated Successfully
@@ -76,7 +84,6 @@ $i=0;
 {{-- @include('content.brand.brandcolor_js') --}}
 @include('content.study.study_js')
 
-@include('content.study.update')
 @include('content.study.add_study_model')
 
 {!! Toastr::message() !!}

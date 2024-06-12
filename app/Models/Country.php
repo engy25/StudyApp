@@ -28,10 +28,10 @@ class Country extends Model implements TranslatableContract
 
     static::deleting(function ($country) {
         // Check if the country is related to any cities or users
-        $relatedCitiesCount = $country->cities()->count();
-        $relatedUsersCount = User::where("country_code", $country->country_code)->count();
 
-        if ($relatedCitiesCount > 0 || $relatedUsersCount > 0) {
+        $relatedUsersCount = User::where("country_id", $country->id)->count();
+
+        if ($relatedUsersCount > 0) {
             dd(1);
             return false; // Prevent deletion
         } else {
@@ -77,10 +77,7 @@ class Country extends Model implements TranslatableContract
   {
       return $this->hasMany(CountryTranslation::class);
   }
-  public function currency()
-  {
-    return $this->belongsTo(Currency::class);
-  }
+
   public function cities()
   {
       return $this->hasMany(City::class);

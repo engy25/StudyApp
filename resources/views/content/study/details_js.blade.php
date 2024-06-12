@@ -94,9 +94,8 @@
     $(document).on("click", '.add_detail', function(e){
       e.preventDefault();
 
-      let colors = $('#colors').val();
-      let model = $('#model').val();
-      let brand_id = $('#brand_id').val();
+      let branch = $('#branch').val();
+      let study_id = $('#study_id').val();
 
       // Clear previous error messages
       $('.errMsgContainer').empty();
@@ -105,9 +104,8 @@
         url: "{{ route('details.store') }}",
         method: 'post',
         data: {
-          colors: colors,
-          model: model,
-          brand_id: brand_id,
+          branch: branch,
+          study_id: study_id,
         },
         dataType: "json",
         headers: {
@@ -195,17 +193,20 @@ $(document).on('click', '.delete-detailModel', function (e) {
                     }, 2000);
                 } else if (data.status == 422) {
                     // brand could not be deleted due to relationships
-                    alert('You cannot delete this Detail as it is related to other tables.');
+                    alert('You cannot delete this Branch as it is related to other tables.');
                 } else if (data.status == 403) {
                     // brand deletion forbidden due to relationships
-                    alert('Deletion of this Detail is forbidden as it is related to other tables.');
+                    alert('Deletion of this Branch is forbidden as it is related to other tables.');
                 }
             },
             error: function (data) {
-              console.log(data.responseJSON);
-
+              alert('Deletion of this Branch is forbidden as it is used.');
+                console.log(data);
+                if(data.status==false){
+                  alert('Deletion of this Branch is forbidden as it is used.');
+                }
                 if (data.status !== 500) {
-                    alert('Cannot delete Detail, It is related to other tables and it is used.');
+                    alert('An error occurred while deleting the Branch.');
                 }
             }
         });
@@ -219,56 +220,3 @@ $(document).on('click', '.delete-detailModel', function (e) {
 
 
 
-
-<script>
-  $(document).ready(function(){
-    $(document).on("click", '.add_color', function(e){
-      e.preventDefault();
-
-      let colors = $('#colors').val();
-      console.log(colors);
-
-      let brand_id = $('#brand_id').val();
-      console.log(brand_id);
-
-      // Clear previous error messages
-      $('.errMsgContainer').empty();
-
-      $.ajax({
-        url: "{{ route('colorsinShow.store') }}",
-        method: 'post',
-        data: {
-          colors: colors,
-          brand_id: brand_id,
-        },
-        dataType: "json",
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-          console.log(data);
-      $('.errMsgContainer').empty();
-      $("#addDetailsModal").modal("hide");
-      $('#addColorForm')[0].reset();
-      $('#brandmodel-table').load(location.href + ' #brandmodel-table');
-      $('#brandmodeladd').show();
-
-      // Hide success message after 2 seconds
-      setTimeout(function() {
-        $('#brandmodeladd').hide();
-      }, 2000);
-        },
-        error: function(response) {
-          console.log(response.responseJSON);
-      $('.errMsgContainer').empty();
-      errors = response.responseJSON.errors;
-      $.each(errors, function(index, value){
-        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br/>');
-      });
-        }
-      });
-    });
-
-   
-  });
-</script>

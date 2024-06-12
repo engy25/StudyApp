@@ -19,22 +19,25 @@ class CategorySeeder extends Seeder
 
         Category::create([
           'id' => 1,
-          'name' => "اقتصادي",
-          'image' => "ektesady.png",
+          'name' => "Study",
+          'icon' => "Study.png",
+          'created_at'=>now()
 
         ]);
 
         Category::create([
           'id' => 2,
-          'name' => "بلس",
-          'image' => "plus.png",
+          'name' => "Focus",
+          'icon' => "Focus.png",
+          'created_at'=>now()
 
         ]);
 
         Category::create([
-          'id' => 3,
-          'name' => "بريميوم",
-          'image' => "premium.png",
+          'id' => "3",
+          'name' => "SelfCare",
+          'icon' => "Focus.png",
+          'created_at'=>now()
 
         ]);
     }

@@ -8,7 +8,6 @@ $i=0;
         <th class="fw-semibold border-bottom">{{ trans('words.name') }}</th>
         <th class="fw-semibold border-bottom">{{ trans('words.Code') }}</th>
         <th class="fw-semibold border-bottom">{{ trans('words.flag') }}</th>
-        <th class="fw-semibold border-bottom">{{ trans('words.CurrencyName') }}</th>
         <th class="bg-transparent fw-semibold border-bottom">Action</th>
       </tr>
     </thead>
@@ -21,7 +20,7 @@ $i=0;
 
         <td class="text-truncate">{{ $country->country_code }}</td>
         <td><img src="{{ $country->flag }}" alt="flag" style="width:60px; height:60px"></td>
-        <td>{{ $country->currency->name  }}</td>
+
 
         <td class="cell-fit">
           <div class="d-flex justify-content-center">

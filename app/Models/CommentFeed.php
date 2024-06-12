@@ -15,4 +15,19 @@ class CommentFeed extends Model {
 		return $this->morphTo();
 	}
 
+  public function user()
+  {
+    return $this->belongsTo(User::class,"user_id");
+  }
+
+  public function replies()
+  {
+      return $this->hasMany(CommentFeed::class, 'parent_comment_id');
+  }
+
+  public function parentComment()
+  {
+      return $this->belongsTo(CommentFeed::class, 'parent_comment_id');
+  }
+
 }

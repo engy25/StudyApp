@@ -28,6 +28,13 @@ class StudyRequest extends FormRequest
       'name' => 'required|min:3|max:30|unique:studies,name',
       'branches.*.name' => 'required|string|max:50|unique:branch_studies,name',
       'image'=>'required|mimes:jpeg,jpg,png,gif|max:10000',
+     // 'branches' => 'required|array',
+
+
+
+
+
+
 
     ];
   }

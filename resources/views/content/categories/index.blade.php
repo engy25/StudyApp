@@ -40,8 +40,6 @@
 
 
 
-
-
 <div class="alert alert-success" style="display: none;" id="success1">
 
   Category Added Successfully

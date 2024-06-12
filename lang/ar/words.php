@@ -15,8 +15,11 @@ return [
 
 
   'flag'=>'علم',
+  'title'=>'الحكمه',
+  'owner'=>'صاحب الحكمه',
   'City' => "مدينه",
   'Country' => 'دوله',
+  'description'=>'الوصف',
   'name' => "الاسم",
   "District" => "المنطقه",
   "Population" => "التوزيع السكاني",

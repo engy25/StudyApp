@@ -26,8 +26,8 @@ class SetGoalRequest extends ApiMasterRequest
     $user_id = auth("api")->user()->id;
     return [
 
-      'hours' => 'required|integer|min:1|max:20',
-      'minutes' => 'required|integer|min:0|max:59',
+      'hours' => 'required_with:type,daily|integer|min:1|max:20',  // in case the type is daily
+      'minutes' => 'required_with:type,daily|integer|min:0|max:59',   // in case the type is daily
       'type' => 'required|in:general,daily',
       // 'name'=>"required_if:type,general",
       'name' => [

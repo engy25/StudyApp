@@ -12,6 +12,7 @@ class CreateFeaturesTable extends Migration {
 			$table->timestamps();
 			$table->string('name');
 			$table->text('desciption')->nullable();
+      $table->string("icon");
 		});
 	}
 

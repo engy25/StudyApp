@@ -78,7 +78,8 @@ in case of success
                 "shareContent": null,
                 "sharedLikes_count": 0,
                 "sharedComments_count": 0,
-                "share_id": null
+                "share_id": null,
+                "favourite": false
             },
             {
                 "id": 12,
@@ -106,7 +107,8 @@ in case of success
                 "shareContent": "hello",
                 "sharedLikes_count": 0,
                 "sharedComments_count": 0,
-                "share_id": 1
+                "share_id": 1,
+                "favourite": false
             },
             {
                 "id": 50,
@@ -129,110 +131,10 @@ in case of success
                 "shareContent": null,
                 "sharedLikes_count": 0,
                 "sharedComments_count": 0,
-                "share_id": null
+                "share_id": null,
+                "favourite": false
             },
-            {
-                "id": 49,
-                "content": null,
-                "created_at": "4 hours ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
-            {
-                "id": 48,
-                "content": null,
-                "created_at": "4 hours ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
-            {
-                "id": 47,
-                "content": null,
-                "created_at": "4 hours ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
-            {
-                "id": 46,
-                "content": null,
-                "created_at": "1 day ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
-            {
-                "id": 15,
-                "content": null,
-                "created_at": "2 days ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
-            {
-                "id": 36,
-                "content": null,
-                "created_at": "2 days ago",
-                "user_name": "enjy",
-                "user_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
-                "shares_count": 0,
-                "likes_count": 0,
-                "comments_count": 0,
-                "media": [],
-                "sharedAt": null,
-                "isShared": false,
-                "shareContent": null,
-                "sharedLikes_count": 0,
-                "sharedComments_count": 0,
-                "share_id": null
-            },
+
             {
                 "id": 41,
                 "content": null,
@@ -248,7 +150,8 @@ in case of success
                 "shareContent": null,
                 "sharedLikes_count": 0,
                 "sharedComments_count": 0,
-                "share_id": null
+                "share_id": null,
+                "favourite": false
             }
         ]
     }

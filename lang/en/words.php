@@ -15,6 +15,9 @@ return [
 
 'flag'=>'Flag',
   'City' => 'City',
+  'title'=>'Title',
+  'owner'=>'Owner',
+  'description'=>'Description',
   'Country' => 'Country',
   'name' => "Name",
   "District" => "District",

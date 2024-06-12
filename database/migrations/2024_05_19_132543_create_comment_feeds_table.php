@@ -12,6 +12,7 @@ class CreateCommentFeedsTable extends Migration {
 			$table->timestamps();
       $table->bigInteger('commenteable_id')->unsigned();
       $table->string('commenteable_type');
+      $table->bigInteger("parent_comment_id")->unsigned()->nullable();
 			$table->bigInteger('user_id')->unsigned();
 			$table->text('comment');
 		});

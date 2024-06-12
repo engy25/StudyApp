@@ -207,11 +207,12 @@ $(document).ready(function() {
         name: branchName // Assuming you have `modelName` defined elsewhere
       });
     });
+    console.log(branches);
 
     var formData = new FormData();
     formData.append('name', name);
     formData.append('image', image);
-    formData.append('branches', branches);
+    formData.append('branches', JSON.stringify(branches)); //
 
     $('.errMsgContainer').empty(); // Clear previous error messages
     console.log(name);
@@ -284,28 +285,30 @@ $(document).on('click', '.delete-study', function (e) {
                 study: study_id
             },
             success: function (data) {
-                if (data.status == true) {
-                    // store was deleted successfully
-                    $('#data-table2').load(location.href + ' #data-table2');
+              ///
+              if (data.status === true) {
+                $('#data-table2').load(location.href + ' #data-table2');
+                $('#success3').show();
+                setTimeout(function () {
+                  $('#success3').hide();
+                }, 2000);
+              } else if (data.status === false) {
+                 // side could not be deleted due to relationships
+                alert(data.msg);
+              } else if (data.status === 403) {
+                 // side deletion forbidden due to relationships
+                alert(data.msg);
 
-                    $('#success3').show();
-                    /* hide success message after 4 seconds */
-                    setTimeout(function () {
-                        $('#success3').hide();
-                    }, 2000);
-                } else if (data.status == 422) {
-                    // brand could not be deleted due to relationships
-                    alert('You cannot delete this brand as it is related to other tables.');
-                } else if (data.status == 403) {
-                    // brand deletion forbidden due to relationships
-                    alert('Deletion of this brand is forbidden as it is related to other tables.');
-                }
+              }
             },
             error: function (data) {
-              console.log(data.responseJSON);
-
+              alert('Deletion of this Study is forbidden as it is used.');
+                console.log(data);
+                if(data.status==false){
+                  alert('Deletion of this Study is forbidden as it is used.');
+                }
                 if (data.status !== 500) {
-                    alert('Cannot delete Brand, It is related to other tables and it is used.');
+                    alert('An error occurred while deleting the Study.');
                 }
             }
         });

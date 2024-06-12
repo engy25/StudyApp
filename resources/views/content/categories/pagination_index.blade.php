@@ -9,7 +9,7 @@ $i=0;
       <th class="fw-semibold border-bottom">{{ trans('words.image') }}</th>
 
       <th class="bg-transparent fw-semibold border-bottom">Edit</th>
-     
+
       <th class="bg-transparent fw-semibold border-bottom">Delete</th>
     </tr>
   </thead>
@@ -29,13 +29,12 @@ $i=0;
 
       <td>
         <span class="text-dark fs-13 fw-semibold">
-          <img src="{{ $category->image }}" alt="Category-Image" style="width: 60px; height:60px">
+          <img src="{{ $category->icon }}" alt="Icon-Image" style="width: 60px; height:60px">
         </span>
       </td>
 
 
       <td class="center align-middle">
-
 
           <a href="{{ route('categories.edit', $category->id) }}"
             class="btn bg-info-transparent d-flex align-items-center justify-content-center">

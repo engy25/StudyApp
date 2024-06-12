@@ -1,13 +1,43 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-class Feature extends Model {
-
-  use HasFactory;
-	protected $table = 'features';
-  protected $guarded = [];
+use App\Helpers\Helpers;
+class Feature extends Model
+{
+    use HasFactory;
+      protected $guarded = [];
 	public $timestamps = true;
+
+
+  public function setIconAttribute($value)
+  {
+    if ($value && $value->isValid()) {
+      if (isset($this->attributes['icon']) && $this->attributes['icon']) {
+
+
+        if (file_exists(public_path('storage/app/public/images/feature/' . $this->attributes['icon']))) {
+          \File::delete(public_path('storage/app/public/images/feature/' . $this->attributes['icon']));
+        }
+      }
+
+      $helper = new Helpers();
+      $image = $helper->upload_single_file($value, 'app/public/images/feature/');
+
+
+
+      $this->attributes['icon'] = $image;
+    }
+  }
+
+
+  public function getIconAttribute()
+  {
+    return asset('storage/app/public/images/feature/' . $this->attributes['icon']);
+
+  }
+
 
 }

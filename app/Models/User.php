@@ -40,7 +40,7 @@ class User extends Authenticatable
 
   public function token(): HasOne
   {
-      return $this->hasOne(\Laravel\Passport\Token::class, 'user_id');
+    return $this->hasOne(\Laravel\Passport\Token::class, 'user_id');
   }
 
 
@@ -110,7 +110,12 @@ class User extends Authenticatable
   public function feeds()
   {
 
-    return $this->hasMany(Feed::class,"user_id");
+    return $this->hasMany(Feed::class, "user_id");
+  }
+  public function shares()
+  {
+
+    return $this->hasMany(Share::class, "sharing_user_id");
   }
 
 
@@ -119,6 +124,51 @@ class User extends Authenticatable
     return $this->hasMany(Provider::class);
   }
 
+  public function feedFavourites()
+  {
+    return $this->morphedByMany(Feed::class, "favoriteable", "favourites");
+  }
+  public function shareFavourites()
+  {
+    return $this->morphedByMany(Share::class, "favoriteable", "favourites");
+  }
+
+  public function feedLikes()
+  {
+    return $this->morphedByMany(Feed::class, "likeable", "likes");
+  }
+  public function shareLikes()
+  {
+    return $this->morphedByMany(Share::class, "likeable", "likes");
+  }
+
+  public function followings()
+  {
+    return $this->belongsToMany(User::class, "followers", "follower_id", "following_id");
+  }
+
+
+  public function followers()
+  {
+    return $this->belongsToMany(User::class, "followers", "following_id", "follower_id");
+  }
+
+  public function getFollowingCountsAttribute()
+  {
+    return $this->followings()->count();
+  }
+
+  public function getFollowerCountsAttribute()
+  {
+    return $this->followers()->count();
+  }
+
+  public function getFeedCountsAttribute()
+  {
+    $feedCounts=$this->feeds()->count();
+    $shareCounts=$this->shares()->count();
+    return $feedCounts +$shareCounts;
+  }
 
 
 }

@@ -43,25 +43,23 @@
             </div>
 
             <div class="row mb-3">
-                <label class="col-md-2 form-label mb-4">Main Image:</label>
-                <div class="col-md-10">
-                    <input name="image" id="demo" type="file" accept=".jpg, .png, image/jpeg, image/png" placeholder="Image">
-                    @error('image')
-                    <div class="alert alert-danger" role="alert">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                    <br><br><br>
-                    @if($category->image)
-                    <div>
-                        <img id="image-preview" src="{{ asset($category->image) }}" alt="Store Image" style="max-width: 200px;">
-                    </div>
-                    @else
-                    <div>
-                        <img id="image-preview" alt="Service Image" style="display: none; max-width: 200px;">
-                    </div>
-                    @endif
+              <label class="col-md-2 form-label mb-4"> Icon:</label>
+              <div class="col-md-10">
+                <input name="icon" id="demo" type="file" accept=".jpg, .png, image/jpeg, image/png" placeholder="Image">
+                @error('image')
+                <div>{{ $message }}</div>
+                @enderror
+                <br><br><br>
+                @if($category->icon)
+                <div>
+                  <img id="image-preview" src="{{ asset($category->icon) }}" alt="Store Icon" style="max-width: 200px;">
                 </div>
+                @else
+                <div>
+                  <img id="image-preview" alt="Store Icon" style="display: none; max-width: 200px;">
+                </div>
+                @endif
+              </div>
             </div>
 
 
@@ -72,26 +70,27 @@
         </form>
     </div>
 </div>
-
 <script>
-    const input = document.getElementById('demo');
-    const preview = document.getElementById('image-preview');
+  const input = document.getElementById('demo');
+const preview = document.getElementById('image-preview');
 
-    input.addEventListener('change', () => {
-        const file = input.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.addEventListener('load', () => {
-                preview.src = reader.result;
-                preview.style.display = 'block';
-                preview.style.maxWidth = '200px'; // Set a maximum width of 200 pixels for the image
-            });
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = '';
-            preview.style.display = 'none';
-        }
-    });
+input.addEventListener('change', () => {
+const file = input.files[0];
+if (file) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+      preview.src = reader.result;
+      preview.style.display = 'block';
+      preview.style.maxWidth = '200px'; // Set a maximum width of 200 pixels for the image
+      preview.style.height = '200px'; // Set a maximum width of 200 pixels for the image
+  });
+  reader.readAsDataURL(file);
+} else {
+  preview.src = '';
+  preview.style.display = 'none';
+}
+});
+
 </script>
 
 @endsection

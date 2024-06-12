@@ -21,9 +21,7 @@ class CountryController extends Controller
   {
     $locale = LaravelLocalization::getCurrentLocale();
 
-    $countries = Country::with([
-      "currency"
-    ])->latest()->paginate(PAGINATION_COUNT);
+    $countries = Country::latest()->paginate(PAGINATION_COUNT);
 
     return view("content.country.index", compact("countries"));
 
@@ -33,9 +31,7 @@ class CountryController extends Controller
   {
     $locale = LaravelLocalization::getCurrentLocale();
 
-    $countries = Country::with([
-      "currency"
-    ])->latest()->paginate(PAGINATION_COUNT);
+    $countries = Country::latest()->paginate(PAGINATION_COUNT);
 
 
     return view("content.country.pagination_index", compact("countries"))->render();
@@ -46,58 +42,19 @@ class CountryController extends Controller
   /****search  */
   public function searchCountry(Request $request)
   {
-    $locale = LaravelLocalization::getCurrentLocale();
 
     $searchString = '%' . $request->search_string . '%';
+    $locale = LaravelLocalization::getCurrentLocale();
 
-    $countries = Country::with([
-      "currency" => function ($query) use ($locale) {
-        $query->select("id", "name_" . $locale . " as name", "isocode");
-      }
-    ])
-      ->where("name_" . $locale, 'like', $searchString)
-      ->orWhere("name_" . $locale, 'like', $searchString)
-      ->orWhere("region_" . $locale, 'like', $searchString)
-      ->orWhere("localName_" . $locale, 'like', $searchString)
-      ->orWhere("governmentForm_" . $locale, 'like', $searchString)
-      ->orWhere("capital", 'like', $searchString)
-      ->orWhere("HeadOfState", 'like', $searchString)
-      ->orWhere("IndepYear", 'like', $searchString)
-      ->orWhere("lifeExpectancy", 'like', $searchString)
-      ->orWhere("continent", 'like', $searchString)
-      ->orWhere("GNP", 'like', $searchString)
-      ->orWhere("GNPOld", 'like', $searchString)
-      ->orWhere("code", 'like', $searchString)
-      ->orWhere("code2", 'like', $searchString)
-      ->select([
-        "name_" . $locale . " as name",
-        "id",
-        "region_" . $locale . " as region",
-        "code",
-        "code2",
-        "name_en",
-        "name_ar",
-        "region_en",
-        "region_ar",
-        "localName_en",
-        "localName_ar",
-        "governmentForm_en",
-        "governmentForm_ar",
-        "capital",
-        "HeadOfState",
-        "capital",
-        "IndepYear",
-        "surfaceArea",
-        "lifeExpectancy",
-        "GNP",
-        "GNPOld",
-        "currency_id",
-        "localName_" . $locale . " as localName",
-        "population",
-        "continent"
-      ])
+
+    $countries = Country::where("country_code", $request->search_string)->
+      OrWhereHas('translations', function ($query) use ($searchString) {
+        $query->where('name', 'like', $searchString);
+      })
       ->latest()
       ->paginate(PAGINATION_COUNT);
+
+
 
     if ($countries->count() > 0) {
       // Return the search results as HTML
@@ -107,6 +64,13 @@ class CountryController extends Controller
         "status" => 'nothing_found',
       ]);
     }
+
+
+
+
+
+
+
   }
 
 
@@ -129,12 +93,9 @@ class CountryController extends Controller
    */
   public function store(CountryRequest $request)
   {
-    //default currency
-    $currency = Currency::where("default", 1)->first();
 
     $country = Country::create([
       'country_code' => $request->country_code,
-      "currency_id" => $currency->id,
       "flag" => $request->image
 
     ]);
@@ -192,39 +153,6 @@ class CountryController extends Controller
    */
   public function update(Request $request, Country $country)
   {
-
-    $rules = [
-      'country_code' => 'required|string|max:5|min:2|unique:countries,country_code,' . $country->id,
-      'name_en' => [
-        'required',
-        'string',
-        'max:30',
-        'min:3',
-        Rule::unique('country_translations', 'name')->ignore($country->id, 'country_id')->where(function ($query) use ($request, $country) {
-          // Check if the English name is different
-          return $request->name_en !== $country->nameTranslation('en');
-        }),
-      ],
-      'name_ar' => [
-        'required',
-        'string',
-        'max:30',
-        'min:3',
-        Rule::unique('country_translations', 'name')->ignore($country->id, 'country_id')->where(function ($query) use ($request, $country) {
-          // Check if the Arabic name is different
-          return $request->name_ar !== $country->nameTranslation('ar');
-        }),
-      ],
-      'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-    ];
-
-
-    $validator = \Validator::make($request->all(), $rules);
-
-    if ($validator->fails()) {
-      return response()->json(['errors' => $validator->errors()], 422);
-    }
 
 
     $country->country_code = $request->country_code;

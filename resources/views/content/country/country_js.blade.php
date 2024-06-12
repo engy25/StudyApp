@@ -68,32 +68,7 @@
 
 
 
-{{-- /** to fetch list of the data of Currencies and populate the dropdown*/// --}}
-<script>
-  $(document).ready(function(){
 
-    $.ajax({
-  url: "{{ route('currencies.display') }}",
-  method: 'GET',
-  dataType: "json",
-  success: function (data) {
-    // populate the dropdown with the received country data
-    var options='<option value=""> Select Currency </option>';
-    $.each(data, function (index, currency) {
-      options += '<option value="' + currency.id + '">' + currency.name + '</option>';
-    });
-    $('#currency_id').html(options);
-  },
-  error: function (response) {
-    // Handle error if fetching countries fails
-    console.error('Error fetching currencies:', response);
-  }
-});
-
-
-  });
-
-</script>
 
 
 

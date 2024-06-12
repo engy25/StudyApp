@@ -23,7 +23,10 @@ use App\Http\Controllers\dashboard\DataEntry\{
   PermissionController,
   ColorController,
   CategoryController,
-  StudyController
+  StudyController,
+  FeatureController,
+  CountryController,
+  WisdomController
 
 
 };
@@ -127,12 +130,33 @@ Route::group(
      /*------------------------------------------------------------------------- */
 
 
+     /*******************Wisdoms *****************/
+     Route::Resource('wisdoms', WisdomController::class);
+     Route::get("/pagination/paginate-wisdom", [WisdomController::class, "paginationWisdom"]);
+     Route::get('/search-wisdom', [WisdomController::class, 'searchWisdom'])->name('search.wisdom');
+     /*------------------------------------------------------------------------- */
+
+          /*******************Features *****************/
+     Route::Resource('features', FeatureController::class);
+     Route::get("/pagination/paginate-feature", [FeatureController::class, "paginationFeature"]);
+     Route::get('/search-feature', [CategoryController::class, 'searchFeature'])->name('search.feature');
+          /*------------------------------------------------------------------------- */
+
      /*******************Studies *****************/
      Route::Resource('studies', StudyController::class);
      Route::get("/pagination/paginate-study", [StudyController::class, "paginationStudy"]);
      Route::get('/search-study', [StudyController::class, 'searchStudy'])->name('search.study');
+     Route::post("details-stote",[StudyController::class,"storeDetails"])->name("details.store");
+     Route::delete("details/{detail_id}", [StudyController::class, "deleteDetail"])->name("details.destroy");
           /*------------------------------------------------------------------------- */
 
+
+    /***************************Countries ************************/
+    Route::Resource('countries', CountryController::class);
+    Route::get("/pagination/paginate-country", [CountryController::class, "paginationCountry"]);
+    Route::get('/search-country', [CountryController::class, 'searchCountry'])->name('search.country');
+    Route::get('countries-display', [CountryController::class, "countryIndex"])->name("countries.display");
+    /*------------------------------------------------------------------------- */
 
     /*******************Colors *****************/
     Route::Resource('colors', ColorController::class);

@@ -55,6 +55,33 @@
       ]
     },
 
+    {
+      "name":  "Wisdoms",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+
+      "submenu": [
+        {
+          "url": "wisdoms",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+
+
+    {
+      "name":  "Features",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "app-user-view",
+      "submenu": [
+        {
+          "url": "features",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+      ]
+    },
 
 
 

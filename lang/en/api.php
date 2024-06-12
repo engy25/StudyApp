@@ -159,4 +159,8 @@ return [
   "Selected_id_invalid_to_feed"=>"The selected id is invalid for the feed type.",
   "comment_added_success"=>"Comment Added Successfully",
   "share_added_success"=>"Share Added Successfully",
+  "group_deleted_successfully"=>"Group Deleted Successfully",
+  'follower_delete_success'=>'You are now unfollow this user.',
+  'follower_add_success'=>'You are now following this user.',
+  'errYoucannotfollowyourself'=>"You Cannot Follow Yourself",
 ];

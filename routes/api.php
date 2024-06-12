@@ -9,7 +9,12 @@ use App\Http\Controllers\Api\{
   User\HomeController,
   User\NotificationController,
   User\GoalsController,
-  User\FeedsController
+  User\FeedsController,
+  User\GroupController,
+  User\FavouritesController,
+  User\LikeController,
+  User\CommentController,
+  User\FollowController
 
 };
 
@@ -119,12 +124,58 @@ Route::namespace('Api')->middleware(['setLocale'])->group(function () {
 
     /**************************************Feeds********************************************/
     Route::post("create-post",[FeedsController::class,"createPost"]);
-    Route::post("make-like",[FeedsController::class,"makeLike"]);
-    Route::post("make-comment",[FeedsController::class,"makeComment"]);
-    Route::post("add-favoutrite",[FeedsController::class,"AddToFavourite"]);
     Route::post("make-share",[FeedsController::class,"makeShare"]);
-    Route::get("posts",[FeedsController::class,"indexPost"]);
+    Route::get("posts",[FeedsController::class,"indexPosts"]);
+    Route::get("show-posts-of-user",[FeedsController::class,"ShowPostsOfTheUser"]);
+    Route::get("show-feed",[FeedsController::class,"showFeed"]);
     Route::get("search-user/{keyword}",[FeedsController::class,"searchUser"]);
+
+        /**************************************Likes********************************************/
+    Route::post("make-like",[LikeController::class,"makeLike"]);
+    Route::get("show-user-make-like",[LikeController::class,"UserMakeLike"]);
+                            /**************************************/
+
+        /**************************************Likes********************************************/
+    Route::post("make-comment",[CommentController::class,"makeComment"]);
+    Route::get("show-comments",[CommentController::class,"showComments"]);
+                         /**************************************/
+
+
+
+        /**************************************Favourites********************************************/
+    Route::post("add-favoutrite",[FavouritesController::class,"AddToFavourite"]);
+    Route::post("show-favoutrite/{sort}",[FavouritesController::class,"showFavourite"]);
+                         /**************************************/
+
+
+
+    /************************************************************************************************************/
+
+
+
+        /**************************************Followers********************************************/
+
+
+    Route::post("make-follow",[FollowController::class,"makeFollow"]);
+    Route::get("show-follow",[FollowController::class,"ShowFollow"]);
+
+
+    /************************************************************************************************************/
+
+
+
+        /**************************************Groups********************************************/
+    Route::get('groups',[GroupController::class,"index"]);
+    Route::get('show-group/{group_id}',[GroupController::class,"show"]);
+    Route::post('exit-group/{group_id}',[GroupController::class,"exitGroup"]);
+    Route::post('delete-group/{group_id}',[GroupController::class,"deleteGroup"]);
+    Route::post("create-group",[GroupController::class,"createGroup"]);
+    Route::post("update-group/{group_id}",[GroupController::class,"UpdateGroup"]);
+    Route::get("search-group/{keyword}",[GroupController::class,"SearchGroup"]);
+    /************************************************************************************************************/
+
+
+
 
 
 

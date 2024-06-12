@@ -48,7 +48,19 @@ class CreateForeignKeys extends Migration
       $table->foreign('category_id')->references('id')->on('categories')
         ->onDelete('cascade')
         ->onUpdate('no action');
+
+      $table->foreign('goal_id')->references('id')->on('goals')
+        ->onDelete('cascade')
+        ->onUpdate('no action');
     });
+
+    Schema::table('focus_sessions', function (Blueprint $table) {
+
+      $table->foreign('group_id')->references('id')->on('groups')
+        ->onDelete('cascade')
+        ->onUpdate('no action');
+    });
+
     Schema::table('feeds', function (Blueprint $table) {
       $table->foreign('user_id')->references('id')->on('users')
         ->onDelete('cascade')
@@ -101,6 +113,25 @@ class CreateForeignKeys extends Migration
         ->onDelete('cascade')
         ->onUpdate('no action');
     });
+
+    Schema::table('groups', function (Blueprint $table) {
+      $table->foreign('feature_id')->references('id')->on('features')
+        ->onDelete('cascade')
+        ->onUpdate('no action');
+
+    });
+
+    Schema::table('comment_feeds', function (Blueprint $table) {
+      $table->foreign("parent_comment_id")->references("id")->on("comment_feeds")->
+        onDelete("cascade")
+        ->onUpdate('no action');
+    });
+
+    Schema::table('users', function (Blueprint $table) {
+      $table->foreign('country_id')->references('id')->on('countries')
+      ->onDelete('cascade')
+      ->onUpdate('no action');
+  });
     Schema::table('group_users', function (Blueprint $table) {
       $table->foreign('user_id')->references('id')->on('users')
         ->onDelete('cascade')

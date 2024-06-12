@@ -39,6 +39,7 @@ return [
   'favourite_added_success' => 'تمت اضافه المفضله بنجاح',
   'favourite_not_found' => 'المفضله ليست موجوده',
   'data_deleted_successfully' => 'تم مسح البيانات بنجاح',
+  'group_deleted_successfully' => 'تم مسح المجموعه بنجاح',
   'notif_deleted_successfully' => 'تم مسح الاشعار بنجاح',
   'Pleaze_login_first' => "قم بتسجيل الدخول من فضلك",
   'Not_found' => 'غير موجود',
@@ -135,5 +136,8 @@ return [
   "Selected_id_invalid_to_feed"=>"المعرف المحدد غير صالح لنوع البوست.",
   "comment_added_success"=>"تم اضافه التعليق بنجاح",
   "share_added_success"=>"تم اضافه المشاركه بنجاح",
+  'follower_delete_success'=>'لقد الغيت المتابعه بنجاح',
+  'follower_add_success'=>'أنت الآن تتابع هذا المستخدم.',
+  'errYoucannotfollowyourself'=>"لا يمكنك متابعه نفسك",
 ];
 

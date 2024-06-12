@@ -5,7 +5,7 @@ namespace App\Http\Controllers\dashboard\DataEntry;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\dash\DE\{StoreCategoryRequest};
+use App\Http\Requests\dash\DE\{StoreCategoryRequest,UpdateCategoryRequest};
 
 class CategoryController extends Controller
 {
@@ -76,7 +76,7 @@ class CategoryController extends Controller
    */
   public function store(StoreCategoryRequest $request)
   {
-    $category = Category::create(["name" => $request->name, "image" => $request->image]);
+    $category = Category::create(["name" => $request->name, "icon" => $request->icon]);
 
     if ($category) {
       return response()->json([
@@ -121,16 +121,11 @@ class CategoryController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @param  \App\Models\Category  $category
    */
-  public function update(Request $request, Category $category)
+  public function update(UpdateCategoryRequest $request, Category $category)
   {
-    $category->name = $request->name;
+    $category->update($request->validated());
 
-    if ($request->hasFile('image')) {
-      $category->image = $request->image;
-    }
-    $category->save();
-
-    return redirect()->route('categories.index')->with('success', 'Category has been updated successfully.');
+     return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
   }
 
   /**

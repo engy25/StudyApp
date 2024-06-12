@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Traits\ConvertHoursToMinutesTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\User\SetGoalRequest;
 use Carbon\Carbon;
@@ -11,6 +12,7 @@ use App\Helpers\Helpers;
 class GoalsController extends Controller
 {
 
+  use ConvertHoursToMinutesTrait;
   public $helper;
   public function __construct()
   {
@@ -21,9 +23,7 @@ class GoalsController extends Controller
   {
     $user_id = auth("api")->user()->id;
 
-    $ConvertyDurationInHoursToMinutes = (int) $request->hours * 60; // Convert duration hours to minutes
-    $durationInMinutes = (int) $request->minutes;
-    $totalDuration = $ConvertyDurationInHoursToMinutes + $durationInMinutes;
+    $totalDuration = $this->convertToMinutes($request->hours, $request->minutes);
 
     $today = Carbon::today(); // Get today's date
 

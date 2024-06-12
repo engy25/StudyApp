@@ -2,12 +2,15 @@
 
 namespace App\Http\Resources\Api\User;
 
+use App\Traits\FavouriteTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Api\User\FeedMediaResource;
+use App\Models\Favourite;
 
 class PostResource extends JsonResource
 {
+  use FavouriteTrait;
   /**
    * Transform the resource into an array.
    *
@@ -23,14 +26,13 @@ class PostResource extends JsonResource
     $sharedLikes_count = $this->resource['sharedLikes_count'] ?? null;
 
     $sharedComments_count = $this->resource['sharedComments_count'] ?? null;
-    $shareId=$this->resource['share_id'];
-
-
-
+    $shareId = $this->resource['share_id'];
 
     // Ensure nested properties are accessed safely
     $user = $feed->user ?? null;
     $media = $feed->media ?? [];
+
+
 
     return [
       "id" => $feed->id ?? null,
@@ -46,9 +48,10 @@ class PostResource extends JsonResource
       'isShared' => $isShared,
       "shareContent" => $shareContent,
       // 'sharedShares_count'=>$shareContent->shares_count ??0,
-      'sharedLikes_count' => $sharedLikes_count ,
-      'sharedComments_count' => $sharedComments_count ,
-      'share_id'=>$shareId
+      'sharedLikes_count' => $sharedLikes_count,
+      'sharedComments_count' => $sharedComments_count,
+      'share_id' => $shareId,
+      "favourite"=>$this->IsFavourite($isShared,$shareId,$feed->id)
 
     ];
   }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\User\{createPostRequest, MakeLikeRequest, MakeCommentRequest,MakeShareRequest};
-use App\Models\{Feed, FeedMedia, User, Follower, FeedLike,Share};
-use App\Http\Resources\Api\User\{PostResource, SimpleUserResource};
+use App\Http\Requests\Api\User\{createPostRequest, MakeLikeRequest, MakeShareRequest};
+use App\Models\{Feed, FeedMedia, User, Share};
+use App\Http\Resources\Api\User\{PostResource, SimpleUserResource, SimplePostResourceWithFav, SimpleShareResource};
 use App\Helpers\Helpers;
 use App\Traits\FeedMerger;
 use Spatie\Permission\Models\{Role};
@@ -53,6 +53,55 @@ class FeedsController extends Controller
 
   }
 
+  /**show the feed or the share */
+  public function showFeed(MakeLikeRequest $request)
+  {
+
+    $userId = auth('api')->user()->id;
+
+    $modelId = $request->id;
+    $type = ucfirst($request->type);
+    $modelType = "App\\Models\\" . $type;
+
+    $model = $modelType::find($modelId);
+
+    if ($type === "Feed") {
+      $resource = SimplePostResourceWithFav::make($model);
+    } else {
+      $resource = SimpleShareResource::make($model);
+    }
+    return $this->helper->responseJson(
+      'success',
+      trans('api.auth_data_retreive_success'),
+      200,
+      [
+        $type => $resource,
+      ]
+    );
+
+  }
+
+
+  public function ShowPostsOfTheUser()
+  {
+    $allFeeds = $this->ShowFeedsOfTheUser("paginate");
+
+    return $this->helper->responseJson(
+      'success',
+      trans('api.auth_data_retreive_success'),
+      200,
+      ['feeds' => PostResource::collection($allFeeds)]
+    );
+
+  }
+
+
+
+
+
+
+
+
   private function SaveAttachments($feed_id, $attachments, $type)
   {
     if ($attachments) {
@@ -78,7 +127,7 @@ class FeedsController extends Controller
   }
 
 
-  public function indexPost()
+  public function indexPosts()
   {
     //  $allFeeds=Feed::paginate(PAGINATION_COUNT);
     $allFeeds = $this->ShowFeeds("paginate");
@@ -94,6 +143,7 @@ class FeedsController extends Controller
     );
 
   }
+
   public function searchUser($keyword)
   {
     $roleUser = Role::where("name", "User")->where("guard_name", "api")->first();
@@ -115,128 +165,22 @@ class FeedsController extends Controller
     );
   }
 
-  public function makeLike(MakeLikeRequest $request)
+
+
+
+
+
+  public function makeShare(MakeShareRequest $request)
   {
     $userId = auth('api')->user()->id;
+    $feedId = $request->id;
+    $feed = Feed::find($feedId);
 
-    $modelId = $request->id;
-    $type = ucfirst($request->type);
-    $modelType = "App\\Models\\" . $type;
-
-    $model = $modelType::find($modelId);
-
-
-    if ($model->likes()->where('user_id', $userId)->count() > 0) {
-      // If the feed or the share is already the user like , remove it
-      $model->likes()->whereUserId($userId)->delete();
-      $model->decrement('likes_count');
-      $message = __('api.like_delete_success');
-    } else {
-      // If the Feed is not in likeby this user, add it
-      $model->likes()->create([
-        'user_id' => $userId,
-      ]);
-      $model->increment('likes_count');
-
-      $message = __('api.like_added_success');
-    }
-
-    // Reload the feeds
-    $allFeeds = $this->ShowFeeds("paginate");
-
-    return $this->helper->responseJson(
-      'success',
-      $message,
-      200,
-      [
-        'feeds' => PostResource::collection($allFeeds)->response()->getData(true),
-      ]
-    );
-
-
-
-  }
-
-
-  public function makeComment(MakeCommentRequest $request)
-  {
-    $userId = auth('api')->user()->id;
-
-    $modelId = $request->id;
-    $type = ucfirst($request->type);
-    $modelType = "App\\Models\\" . $type;
-
-    $model = $modelType::find($modelId);
-
-    $model->comments()->create([
-      'user_id' => $userId,
-      'comment'=>$request->comment
-    ]);
-    $model->increment('comments_count');
-
-    $message = __('api.comment_added_success');
-
-
-    // Reload the feeds
-    $allFeeds = $this->ShowFeeds("paginate");
-
-    return $this->helper->responseJson(
-      'success',
-      $message,
-      200,
-      [
-        'feeds' => PostResource::collection($allFeeds)->response()->getData(true),
-      ]
-    );
-  }
-
-  public function makeShare(MakeShareRequest $request){
-    $userId = auth('api')->user()->id;
-    $feedId=$request->id;
-    $feed=Feed::find($feedId);
-    Share::create(["sharing_user_id"=>$userId,"content"=>$request->content,"shared_feed_id"=>$feed->id]);
+    Share::create(["sharing_user_id" => $userId, "content" => $request->content, "shared_feed_id" => $feed->id]);
     $feed->increment("shares_count");
-      // Reload the feeds
-      $allFeeds = $this->ShowFeeds("paginate");
-      $message = __('api.share_added_success');
-
-      return $this->helper->responseJson(
-        'success',
-        $message,
-        200,
-        [
-          'feeds' => PostResource::collection($allFeeds)->response()->getData(true),
-        ]
-      );
-  }
-
-  public function AddToFavourite(MakeLikeRequest $request)
-  {
-    $userId = auth('api')->user()->id;
-
-    $modelId = $request->id;
-    $type = ucfirst($request->type);
-    $modelType = "App\\Models\\" . $type;
-
-    $model = $modelType::find($modelId);
-
-
-    if ($model->favourites()->where('user_id', $userId)->count() > 0) {
-      // If the feed or the share is already the user add to favourite , remove it
-      $model->favourites()->whereUserId($userId)->delete();
-      $message = __('api.favourite_delete_success');
-    } else {
-      // If the Feed is not in likeby this user, add it
-      $model->favourites()->create([
-        'user_id' => $userId,
-      ]);
-
-
-      $message = __('api.favourite_added_success');
-    }
-
     // Reload the feeds
     $allFeeds = $this->ShowFeeds("paginate");
+    $message = __('api.share_added_success');
 
     return $this->helper->responseJson(
       'success',

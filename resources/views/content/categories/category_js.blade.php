@@ -40,7 +40,7 @@
 <script>
   $(document).ready(function () {
         // Update image preview when a file is selected
-        $('#image').change(function () {
+        $('#icon').change(function () {
             var input = this;
             var reader = new FileReader();
 
@@ -56,72 +56,7 @@
 
 
 
-{{-- /***update Brand*// --}}
 
-<script>
-  $(document).on("click", ".close-btn", function(e) {
-    $('.errMsgContainer').empty(); // Clear error messages when form is closed
-});
-
-
-  $(document).on("click", '.update_brand_form', function() {
-    /* To retrieve the data values from the form */
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-
-    /** To set the values for each input **/
-    $('#up_id').val(id);
-    $('#up_name').val(name);
-
-});
-
-$(document).on("click", ".update_brand", function(e) {
-    e.preventDefault();
-    let id = $('#up_id').val();
-    let up_name = $('#up_name').val();
-    $('.errMsgContainer').empty(); // Clear previous error messages
-
-    $.ajax({
-        url: "{{ route('brands.update', ['brand' => ':id']) }}".replace(':id', id),
-        method: "put",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            id: id,
-            up_name: up_name,
-        },
-        dataType: "json",
-        success: function(data) {
-    console.log('AJAX request successful:', data);
-
-    if (data.status) {
-      console.log(data);
-        // Update successful
-         $('#updateModal').modal('hide');
-         $('#data-table2').load(location.href+' #data-table2');
-                $('#success2').show();
-                /* hide success message after 4 seconds */
-                setTimeout(function() {
-                    $('#success2').hide();
-                }, 2000); // 2000 milliseconds = 2 seconds
-    } else {
-                // Update failed
-                console.error('Failed to update Brand');
-            }
-        },
-        error: function(response) {
-
-          console.log(response.responseJSON);
-          $('.errMsgContainer').empty(); // Clear previous error messages
-            errors = response.responseJSON.errors;
-            $.each(errors, function(index, value) {
-                $('.errMsgContainer').append('<span class="text-danger">' + value + '</span></br>');
-            });
-        }
-    });
-});
-</script>
 
 
 {{-- /////////////////////////////////////////////////Add Services///////////////////////////////////////////////////--}}
@@ -133,11 +68,11 @@ $(document).on("click", ".update_brand", function(e) {
 
             let name = $('#name').val();
 
-            let image = $('#image')[0].files[0];
+            let icon = $('#icon')[0].files[0];
 
             var formData = new FormData();
             formData.append('name', name);
-            formData.append('image', image);
+            formData.append('icon', icon);
 
 
             $('.errMsgContainer').empty(); // Clear previous error messages

@@ -6,7 +6,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="addModalLabel">Add Service</h1>
+          <h1 class="modal-title fs-5" id="addModalLabel">Add Category</h1>
           <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -20,8 +20,8 @@
           <br>
 
           <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image" accept="image/*">
+            <label for="image">Icon</label>
+            <input type="file" name="icon" id="icon" accept="image/*">
             <span class="text-danger error-message" id="error_image"></span>
           </div>
           <br>

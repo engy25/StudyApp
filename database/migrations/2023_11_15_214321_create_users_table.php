@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email', 60);
 			$table->string('phone', 50)->nullable();
 			$table->string('country_code', 10)->nullable();
+      $table->bigInteger("country_id")->nullable()->unsigned();
 			$table->string('otp', 4)->nullable();
 			$table->tinyInteger('is_active')->default('0');
 			$table->string('updated_phone', 50)->nullable();

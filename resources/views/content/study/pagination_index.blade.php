@@ -39,10 +39,7 @@ $i=0;
             class="btn bg-info-transparent d-flex align-items-center justify-content-center">
             <i style="font-size: 20px;" class="fe fe-edit text-info "></i></a>&nbsp;
           <a href="{{ LaravelLocalization::localizeURL(route('studies.edit', $study->id)) }}"
-            class="btn btn-info btn-icon py-1 me-2 update_study_form" data-bs-toggle="modal"
-            data-bs-target="#updateModal" data-id="{{ $study->id }}"
-            data-name="{{ $study->name }}"
-           title="Edit"
+            class="btn btn-info btn-icon py-1 me-2 " title="Edit"
             style="width: 100px; height: 40px;">
             {{ trans('words.edit') }} <i class="bi bi-pencil-square fs-16"></i>
           </a> </i></a>&nbsp;

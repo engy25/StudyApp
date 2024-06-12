@@ -58,10 +58,7 @@
         Details Deleted Successfully
       </div>
 
-      {{-- <div class="text-center mb-3">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <a href="{{ route("brandmodels.store") }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDetailsModal">Add New Detail </a>
-      </div> --}}
+
 
       <div class="text-center mb-3">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -92,12 +89,12 @@
               </tr>
             @empty
               <tr>
-                <td colspan="5" class="text-center">No Details found for this Model.</td>
+                <td colspan="5" class="text-center">No Branches found for this Model.</td>
               </tr>
             @endforelse
           </tbody>
         </table>
-
+        @include('content.study.add_details_model')
       </div>
 
 
@@ -124,5 +121,5 @@
 
 </div>
 
- {{-- @include('content.study.details_js') --}}
+ @include('content.study.details_js')
 @endsection

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BranchStudy;
 use Illuminate\Http\Request;
 use App\Models\Study;
-use App\Http\Requests\dash\DE\StudyRequest;
+use App\Http\Requests\dash\DE\{StudyRequest, StoreDetailsRequest,UpdateStudiesRequest};
+
 class StudyController extends Controller
 {
   public function searchStudy(Request $request)
@@ -18,7 +19,7 @@ class StudyController extends Controller
 
     if ($studies->count() > 0) {
       // Return the search results as HTML
-      return view("content.stydy.pagination_index", compact("studies"))->render();
+      return view("content.study.pagination_index", compact("studies"))->render();
     } else {
       return response()->json([
         "status" => 'nothing_found',
@@ -67,13 +68,17 @@ class StudyController extends Controller
   {
     if ($branches) {
       /**create the models */
-      foreach ($branches as $branch) {
+      foreach (($branches) as $branch) {
         $theBranch = BranchStudy::create([
           'name' => $branch["name"],
           'study_id' => $studyId
         ]);
       }
     }
+
+
+
+
   }
 
 
@@ -86,31 +91,31 @@ class StudyController extends Controller
    */
   public function store(StudyRequest $request)
   {
-    \DB::beginTransaction();
+    // \DB::beginTransaction();
 
-    try {
-      $study = Study::create([
-        "name" => $request->name,
-        "icon"=>$request->image
+    // try {
+    $study = Study::create([
+      "name" => $request->name,
+      "icon" => $request->image
 
-      ]);
-      $this->storeBranches($study->id, $request->branches);
+    ]);
+    $branches = json_decode($request->branches, true); // Decode JSON string to array
+    $this->storeBranches($study->id, $branches);
 
+    \DB::commit();
 
-      \DB::commit();
+    return response()->json([
+      "status" => true,
+      "message" => "Study Added Successfully"
+    ]);
 
-      return response()->json([
-        "status" => true,
-        "message" => "Study Added Successfully"
-      ]);
-
-    } catch (\Exception $e) {
-      \DB::rollBack();
-      return response()->json([
-        "status" => false,
-        "message" => "Error Occurs When  Added Study, Try Again"
-      ]);
-    }
+    // } catch (\Exception $e) {
+    //   \DB::rollBack();
+    //   return response()->json([
+    //     "status" => false,
+    //     "message" => "Error Occurs When  Added Study, Try Again"
+    //   ]);
+    // }
 
   }
 
@@ -132,47 +137,30 @@ class StudyController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param  \App\Models\Study  $study
-   * @return \Illuminate\Http\Response
    */
   public function edit(Study $study)
   {
-    //
+    return view("content.study.update", compact("study"));
   }
+
+
+
+
+
 
   /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Brand  $brand
-   * @return \Illuminate\Http\Response
+   * @param  \App\Models\Study  $study
    */
-  public function update(Request $request, Study $study)
+  public function update(UpdateStudiesRequest $request, Study $study)
   {
-    $rules = [
-      'up_name' => [
-        'required',
-        'string',
-        'max:30',
-        'min:3',
-        'unique:studies,name,' . $study->id,
 
-      ],
+    $study->update($request->validated());
 
-    ];
+     return redirect()->route('studies.index')->with('success', 'Study updated successfully.');
 
-    $validator = \Validator::make($request->all(), $rules);
-
-    if ($validator->fails()) {
-      return response()->json(['errors' => $validator->errors()], 422);
-    }
-    $study->name = $request->up_name;
-
-    $study->save();
-
-    return response()->json([
-      "status" => true,
-      "message" => "Study updated successfully"
-    ]);
   }
 
   /**
@@ -195,69 +183,37 @@ class StudyController extends Controller
 
   /**store details (model and color of brand in show ) */
 
-  // public function storeDetails(StoreDetailsRequest $request)
-  // {
-  //   if (isset ($request->model)) {
-  //     /**
-  //      * create the models
-  //      */
-  //     $model = Models::create([
-  //       "name" => $request->model,
-  //       "brand_id" => $request->brand_id
-  //     ]);
-  //   }
+  public function storeDetails(StoreDetailsRequest $request)
+  {
+    if (isset($request->branch)) {
+      /**
+       * create the models
+       */
+      $branch = BranchStudy::create([
+        "name" => $request->branch,
+        "study_id" => $request->study_id
+      ]);
+    }
 
-  //   if (isset ($request->colors))
-  //     foreach ($request->colors as $colorId) {
-  //       VechileBrandColor::create([
-  //         "models_id" => isset ($request->model) ? $model->id : null,
-  //         "color_id" => $colorId,
-  //         "brand_id" => $request->brand_id
-  //       ]);
+    return response()->json([
+      "status" => true,
+      "message" => "Branch Added Successfully"
+    ]);
 
-  //     }
-
-
-  //   return response()->json([
-  //     "status" => true,
-  //     "message" => "Brand Added Successfully"
-  //   ]);
-
-  // }
-
-  // public function storeBrandColors(StoreBrandColorInShowRequest $request)
-  // {
-
-  //   if (isset ($request->colors))
-  //     foreach ($request->colors as $colorId) {
-  //       VechileBrandColor::create([
-
-  //         "color_id" => $colorId,
-  //         "brand_id" => $request->brand_id
-  //       ]);
-
-  //     }
-
-
-  //   return response()->json([
-  //     "status" => true,
-  //     "message" => "Brand Added Successfully"
-  //   ]);
-
-  // }
+  }
 
 
   /**delete the details of the brand */
 
-  // public function deleteDetail(VechileBrandColor $detail_id)
-  // {
+  public function deleteDetail(BranchStudy $detail_id)
+  {
 
-  //   try {
-  //     $detail_id->delete();
-  //     return response()->json(['status' => true, 'msg' => "Detail Deleted Successfully"]);
-  //   } catch (\Exception $e) {
-  //     return response()->json(['status' => false, 'msg' => $e->getMessage()], 403);
-  //   }
-  // }
+    try {
+      $detail_id->delete();
+      return response()->json(['status' => true, 'msg' => "Branch Deleted Successfully"]);
+    } catch (\Exception $e) {
+      return response()->json(['status' => false, 'msg' => $e->getMessage()], 403);
+    }
+  }
 
 }

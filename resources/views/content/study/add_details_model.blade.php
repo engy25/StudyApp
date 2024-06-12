@@ -13,32 +13,12 @@
           <div class="errMsgContainer mb-3">
           </div>
 
-
-
-          <input type="hidden"  name="brand_id" id="brand_id" value="{{ $brand->id }}">
-          <?php
-
-          $colors=App\Models\Color::get();
-          ?>
+          <input type="hidden"  name="study_id" id="study_id" value="{{ $study->id }}">
 
           <div class="form-group"></div>
-          <label for="color">Colors </label>
-
-          <select name="colors" class="form-control" id="colors" multiple>
-            @foreach($colors as $color)
-            <option value={{ $color->id }}>{{ $color->name }}</option>
-            @endforeach
-          </select>
-
-          <span class="text-danger error-message" id="error_colors"></span>
-          <br>
-
-
-
-          <div class="form-group"></div>
-          <label for="model">Model Name</label>
-          <input type="text" name="model" class="form-control" id="model">
-          <span class="text-danger error-message" id="error_model"></span>
+          <label for="model">Branch Name</label>
+          <input type="text" name="branch" class="form-control" id="branch">
+          <span class="text-danger error-message" id="error_branch"></span>
           <br>
 
 

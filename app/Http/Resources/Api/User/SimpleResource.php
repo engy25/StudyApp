@@ -28,6 +28,9 @@ class SimpleResource extends JsonResource
             'is_active' => (boolean) ($this->is_active),
             'image' => $this->image,
             'email' => $this->email,
+            'following_counts'=>$this->followingCounts,
+            'follower_counts'=>$this->followerCounts,
+            'posts_counts'=>$this->feedCounts,
             'token' => $this->when($this->token, $this->token),
 
 

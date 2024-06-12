@@ -7,8 +7,8 @@ Endpoint :/set-goal
 Method :post
 
 Body :
-'hours' => 'required|integer|min:1|max:20',
-'minutes' => 'required|integer|min:0|max:59',
+'hours' => 'required_with:type,daily|integer|min:1|max:20',  // in case the type is daily
+'minutes' => 'required_with:type,daily|integer|min:0|max:59',   // in case the type is daily
 'type' => 'required|in:general,daily',
 'name'=>"required_if:type,general unique in this user"
 Authorization
@@ -29,7 +29,7 @@ in case of not authentication
 
 
   in case of failed validation
-    status :4 22Unprocessable Content
+    status :422 Unprocessable Content
     {
       "result": "failed",
       "message": [
