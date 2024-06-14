@@ -132,6 +132,23 @@
 
 
 
+    {
+      "name": "users",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "app-user",
+
+      "submenu": [
+        {
+          "url": "users",
+          "name": "List",
+          "slug": "app-user-list"
+        }
+
+      ]
+    },
+
+
+
 
 
 

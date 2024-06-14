@@ -26,7 +26,8 @@ use App\Http\Controllers\dashboard\DataEntry\{
   StudyController,
   FeatureController,
   CountryController,
-  WisdomController
+  WisdomController,
+  FeedController
 
 
 };
@@ -181,11 +182,11 @@ Route::group(
      * Users
      */
     Route::Resource('users', UserController::class);
-    Route::get('usersList/{roleName}', [UserController::class, "indexUser"])->name('users.list');
-    Route::get("/pagination/paginate-user/{roleName}", [UserController::class, "paginationUser"]);
-    Route::get('/search-user/{roleName}', [UserController::class, 'searchUser'])->name('search.user');
-    /**to display the lists of the permissions depends of the role */
-    Route::get('permissionsList/{roleId}', [UserController::class, "displayPermissions"])->name('permissions.list');
+    Route::get("/pagination/paginate-user", [UserController::class, "paginationUser"]);
+    Route::get('/search-user', [UserController::class, 'searchUser'])->name('search.user');
+    /**to  the Feed*/
+    Route::Resource('feeds', FeedController::class);
+    Route::get("/pagination/paginate-feed/{user}", [FeedController::class, "paginationFeed"]);
     /*------------------------------------------------------------------------- */
 
 

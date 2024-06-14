@@ -29,13 +29,11 @@ class StoreUserRequest extends FormRequest
     return [
       'phone' => 'required|regex:/^[^0]\d{8,19}$/|numeric|unique:users,phone',
       'country' => 'required|exists:countries,country_code',
-      'fname' => 'required|string|between:3,40',
-      'lname' => 'nullable|string|between:3,40',
+      'fullname' => 'required|string|between:3,40',
       'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
       'email' => 'required|email|max:55|unique:users,email',
       'image' => 'nullable|image|mimes:jpeg,png,jpg',
       'role' => "required|exists:roles,id",
-      'permissions.*' => 'nullable|exists:permissions,id',
 
     ];
   }

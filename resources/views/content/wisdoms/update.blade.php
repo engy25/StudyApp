@@ -15,18 +15,17 @@
           <div class="errMsgContainer mb-3">
           </div>
 
-          <div class="mb-3">
-            <label for="name" class="form-label">Owner</label>
-            <input type="text"  class="form-control" id="up_owner" name="up_owner" required>
-            <span class="text-danger error-message" id="error_up_owner"></span>
-          </div>
-
         <div class="mb-3">
           <label for="v" class="form-label">Title</label>
           <textarea class="form-control" id="up_title" name="up_title" required></textarea>
           <span class="text-danger error-message" id="error_up_title"></span>
         </div>
 
+        <div class="mb-3">
+          <label for="name" class="form-label">Owner</label>
+          <input type="text"  class="form-control" id="up_owner" name="up_owner" required>
+          <span class="text-danger error-message" id="error_up_owner"></span>
+        </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>

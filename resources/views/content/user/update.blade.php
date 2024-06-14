@@ -2,7 +2,7 @@
 
 @extends('layouts.layoutMaster')
 
-@section('title', 'Update Delivery')
+@section('title', 'Update User')
 
 @section('vendor-style')
 <!-- Include your vendor styles here -->
@@ -28,38 +28,29 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">Update Delivery</h4>
+    <h4 class="card-title">Update User</h4>
   </div>
   <div class="card-body">
 
-    <form method="post" action="{{ route('deliveries.update', $delivery->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
       @csrf
 
       @method('PUT')
 
       <div class="mb-3">
-        <label for="fname" class="form-label">First Name </label>
-        <input type="text" value="{{ $delivery->fname }}" class="form-control" id="fname" name="fname" required>
-        @error('fname')
+        <label for="fullname" class="form-label">First Name </label>
+        <input type="text" value="{{ $user->fullname }}" class="form-control" id="fullname" name="fullname" required>
+        @error('fullname')
         <div class="alert alert-danger" role="alert">
           {{ $message }}
         </div>
         @enderror
       </div>
 
-      <div class="mb-3">
-        <label for="lname" class="form-label">Last Name </label>
-        <input type="text" value="{{ $delivery->lname  }}" class="form-control" id="lname" name="lname" required>
-        @error('lname')
-        <div class="alert alert-danger" role="alert">
-          {{ $message }}
-        </div>
-        @enderror
-      </div>
 
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" value="{{ $delivery->email  }}" class="form-control" name="email" required>
+        <input type="email" value="{{ $user->email  }}" class="form-control" name="email" required>
       </div>
 
       <div class="mb-3">
@@ -69,10 +60,10 @@
             @foreach($countries as $country)
 
             <option value="{{ $country->country_code }}" {{ $country->country_code ==
-              $delivery->country_code ? 'selected' : '' }}>{{ $country->country_code }}</option>
+              $user->country_code ? 'selected' : '' }}>{{ $country->country_code }}</option>
             @endforeach
           </select>
-          <input type="text" class="form-control" id="phone" value="{{ $delivery->phone  }}" name="phone" required>
+          <input type="text" class="form-control" id="phone" value="{{ $user->phone  }}" name="phone" required>
         </div>
       </div>
 
@@ -96,13 +87,13 @@
           </div>
           @enderror
           <br><br><br>
-          @if($delivery->image)
+          @if($user->image)
           <div>
-            <img id="image-preview" src="{{ asset($delivery->image) }}" alt="Store Image" style="max-width: 200px;">
+            <img id="image-preview" src="{{ asset($user->image) }}" alt="Store Image" style="max-width: 200px;">
           </div>
           @else
           <div>
-            <img id="image-preview" alt="Delivery Image" style="display: none; max-width: 200px;">
+            <img id="image-preview" alt="User Image" style="display: none; max-width: 200px;">
           </div>
           @endif
         </div>
@@ -134,7 +125,7 @@
 
       <br><br>
       <div class="text-center my-3">
-        <button type="submit" class="btn btn-primary">Update Delivery</button>
+        <button type="submit" class="btn btn-primary">Update User</button>
       </div>
     </form>
   </div>

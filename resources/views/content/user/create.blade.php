@@ -30,42 +30,8 @@
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-  $(document).ready(function () {
-    var fileInput = $('#demo');
-    var previewImage = $('#preview'); // Updated ID
 
-    // Listen for changes to the file input field
-    fileInput.on('change', function () {
-      // Get the selected file
-      var file = fileInput.get(0).files[0];
 
-      // Create a new FileReader object
-      var reader = new FileReader();
-
-      // Set the image source when the file is loaded
-      reader.onload = function (event) {
-        previewImage.attr('src', event.target.result);
-      };
-
-      // Read the selected file as a data URL
-      reader.readAsDataURL(file);
-    });
-  });
-
-  function previewImage(event) {
-    var input = event.target;
-    var reader = new FileReader();
-    reader.onload = function () {
-      var dataURL = reader.result;
-      var img = document.getElementById('preview');
-      img.src = dataURL;
-      img.style.display = 'block';
-      img.style.maxWidth = '200px';
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-</script>
 @endsection
 
 <div class="alert alert-success" style="display: none;" id="success">
@@ -92,30 +58,19 @@
       @csrf
 
       <div class="mb-3">
-        <select class="form-control" id="role" name="role" >
-          <option >Select Role:</option>
+        <select class="form-control" id="role" name="role" required>
+          <option value="" disabled selected>Select Role:</option>
           @foreach($roles as $role)
-          <option value="{{ $role->id }}">{{ $role->name }}</option>
+            <option value="{{ $role->id }}">{{ $role->name }}</option>
           @endforeach
         </select>
       </div>
 
       <div class="mb-3">
-        <select class="form-control" id="permissions" name="permissions[]" multiple>
-
-        </select>
+        <label for="fullname" class="form-label">Full Name </label>
+        <input type="text" class="form-control required" id="fullname" name="fullname" required>
       </div>
 
-      <div class="mb-3">
-        <label for="fname" class="form-label">First Name </label>
-        <input type="text" class="form-control required" id="fname" name="fname" required>
-      </div>
-
-
-      <div class="mb-3">
-        <label for="lname" class="form-label">Last Name </label>
-        <input type="text" class="form-control " id="lname" name="lname">
-      </div>
 
 
       <div class="mb-3">
@@ -135,7 +90,6 @@
         </div>
       </div>
 
-
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
@@ -143,8 +97,6 @@
           <button class="btn btn-outline-secondary" type="button" id="toggle-password"></button>
         </div>
       </div>
-
-
 
       <div class="row mb-3">
         <label class="col-md-2 form-label mb-4">Main Image:</label>
