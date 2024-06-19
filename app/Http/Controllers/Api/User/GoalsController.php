@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\User\GoalResource;
 use App\Traits\ConvertHoursToMinutesTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\User\SetGoalRequest;
@@ -46,4 +47,14 @@ class GoalsController extends Controller
       trans('api.data_saved_success'), 200, null);
 
   }
+
+  public function index(){
+    $user_id = auth("api")->user()->id;
+    $goals=Goal::whereUserId($user_id)->where("type","general")->get();
+    return $this->helper->
+    responseJson('success',trans('api.auth_data_retreive_success'),200,
+    ['goals'=>GoalResource::collection($goals)]);
+
+  }
+
 }

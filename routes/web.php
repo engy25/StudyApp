@@ -27,7 +27,8 @@ use App\Http\Controllers\dashboard\DataEntry\{
   FeatureController,
   CountryController,
   WisdomController,
-  FeedController
+  FeedController,
+  ShareController
 
 
 };
@@ -187,6 +188,9 @@ Route::group(
     /**to  the Feed*/
     Route::Resource('feeds', FeedController::class);
     Route::get("/pagination/paginate-feed/{user}", [FeedController::class, "paginationFeed"]);
+    /**to  the Share*/
+    Route::Resource('shares', ShareController::class);
+    Route::get("/pagination/paginate-share/{user}", [ShareController::class, "paginationShare"]);
     /*------------------------------------------------------------------------- */
 
 

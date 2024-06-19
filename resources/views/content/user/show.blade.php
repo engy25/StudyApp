@@ -14,8 +14,10 @@
   }
 
   .avatar img {
-    width: 40px; /* Adjust the size as needed */
-    height: 40px; /* Adjust the size as needed */
+    width: 40px;
+    /* Adjust the size as needed */
+    height: 40px;
+    /* Adjust the size as needed */
     object-fit: cover;
   }
 
@@ -71,8 +73,19 @@
       </div>
     </div>
   </div>
+  <?php
+  $role=$user->roles->first();
+  ?>
+
+  @if($role->name==="User")
   <h5 class="my-3 text-center" style="color: black">Feeds</h5>
   @include('content.feed.pagination_index')
+  @endif
+
+  @if($role->name==="User")
+  <h5 class="my-3 text-center" style="color: black">Shares</h5>
+  @include('content.share.pagination_index')
+  @endif
 </div>
 @include('content.feed.feed_js')
 @endsection

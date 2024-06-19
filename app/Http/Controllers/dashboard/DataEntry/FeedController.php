@@ -4,10 +4,12 @@ namespace App\Http\Controllers\dashboard\DataEntry;
 
 use App\Http\Controllers\Controller;
 use App\Models\Feed;
+use App\Traits\FeedMerger;
 use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
+  use FeedMerger;
     /**
      * Display a listing of the resource.
      */
@@ -22,7 +24,8 @@ class FeedController extends Controller
 
    public function paginationFeed(Request $request, $userId)
    {
-    $feeds = Feed::whereUserId($userId)->latest()->paginate(PAGINATION_COUNT);
+    $feeds = $this->showFeedsToTheDashboard($userId);
+
     return view("content.feed.pagination_index", compact("feeds"))->render();
 
    }
@@ -48,7 +51,7 @@ class FeedController extends Controller
      */
     public function show(Feed $feed)
     {
-        //
+      return view("content.feed.show", compact("feed"));
     }
 
     /**

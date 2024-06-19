@@ -16,17 +16,14 @@
         }
       ]
     },
-
     {
       "menuHeader": "Apps & Pages"
     },
-
-
     {
       "name": "Roles & Permissions",
       "icon": "menu-icon tf-icons ti ti-settings",
       "slug": "app-access",
-     "permissions": ["view roles"],
+      "permissions": ["view roles"],
       "submenu": [
         {
           "url": "roles",
@@ -40,12 +37,10 @@
         }
       ]
     },
-
     {
-      "name":  "Categories",
+      "name": "Categories",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
-
       "submenu": [
         {
           "url": "categories",
@@ -54,12 +49,10 @@
         }
       ]
     },
-
     {
-      "name":  "Wisdoms",
+      "name": "Wisdoms",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
-
       "submenu": [
         {
           "url": "wisdoms",
@@ -68,10 +61,8 @@
         }
       ]
     },
-
-
     {
-      "name":  "Features",
+      "name": "Features",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
       "submenu": [
@@ -82,12 +73,8 @@
         }
       ]
     },
-
-
-
-
     {
-      "name":  "Countries",
+      "name": "Countries",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
       "permissions": ["view Countries"],
@@ -99,13 +86,10 @@
         }
       ]
     },
-
-
     {
-      "name":  "Studies",
+      "name": "Studies",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
-
       "submenu": [
         {
           "url": "studies",
@@ -114,13 +98,10 @@
         }
       ]
     },
-
-
     {
-      "name":  "Colors",
+      "name": "Colors",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "app-user-view",
-
       "submenu": [
         {
           "url": "colors",
@@ -129,46 +110,17 @@
         }
       ]
     },
-
-
-
     {
       "name": "users",
       "icon": "menu-icon tf-icons ti ti-users",
       "slug": "app-user",
-
       "submenu": [
         {
           "url": "users",
           "name": "List",
           "slug": "app-user-list"
         }
-
       ]
-    },
-
-
-
-
-
-
-
-    {
-      "menuHeader": "Misc"
-    },
-    {
-
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "name": "Support",
-      "slug": "support",
-      "target": "_blank"
-    },
-    {
-
-      "icon": "menu-icon tf-icons ti ti-file-description",
-      "name": "Documentation",
-      "slug": "documentation",
-      "target": "_blank"
     }
   ]
 }

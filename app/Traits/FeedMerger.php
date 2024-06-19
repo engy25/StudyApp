@@ -197,6 +197,49 @@ trait FeedMerger
 
 
 
+  // public function showFeedsToTheDashboard($userId)
+// {
+//     // Fetch latest feeds
+//     $feeds = Feed::where("user_id",$userId)->
+//     with('user', 'sharedFeeds')->orderBy('created_at', 'desc')->paginate(PAGINATION_COUNT);
+
+//     // Fetch latest shares
+//     $shares = Share::where("sharing_user_id",$userId)->
+//     with('sharingUser', 'feed.user')->orderBy('created_at', 'desc')->paginate(PAGINATION_COUNT);
+
+//     // Combine and sort them
+//     $combined = $feeds->concat($shares)->sortByDesc('created_at');
+
+//     return $combined;
+// }
+
+public function showFeedsToTheDashboard($userId)
+{
+    // Fetch latest feeds with pagination
+
+    $feeds = Feed::where("user_id", $userId)
+                 ->with('user')
+                 ->orderBy('created_at', 'desc')
+                 ->paginate(PAGINATION_COUNT);
+
+
+    return $feeds;
+}
+
+
+public function showSharesToTheDashboard($userId)
+{
+
+
+    // Fetch latest shares with pagination
+    $shares = Share::where("sharing_user_id", $userId)
+                   ->with('sharingUser', 'feed.user')
+                   ->orderBy('created_at', 'desc')
+                   ->paginate(PAGINATION_COUNT);
+
+
+    return $shares;
+}
 
 
 

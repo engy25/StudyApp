@@ -24,6 +24,8 @@ class Feed extends Model {
     return $this->hasMany(Share::class,"shared_feed_id");
   }
 
+
+
   public function likes()
   {
       return $this->morphMany(FeedLike::class, 'likeable');

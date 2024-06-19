@@ -27,7 +27,7 @@
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar">
                                         <a href="{{ route('deliveries.show', ['delivery' => $deliveryNumber]) }}">
-                                            <img src="{{ $driver->image }}" alt="User Avatar" class="h-auto rounded-circle">
+                                            <img src="{{ $driver->image }}" alt="User Avatar" class="h-auto rounded-circle" style="max-height: 38px; max-width:21px">
                                         </a>
                                     </div>
                                 </div>

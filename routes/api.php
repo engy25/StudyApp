@@ -14,7 +14,10 @@ use App\Http\Controllers\Api\{
   User\FavouritesController,
   User\LikeController,
   User\CommentController,
-  User\FollowController
+  User\FollowController,
+  User\CountryController,
+  User\StudyController,
+  User\CategoryController
 
 };
 
@@ -106,6 +109,12 @@ Route::namespace('Api')->middleware(['setLocale'])->group(function () {
 
     Route::get('show-profile', [ProfileController::class, 'ShowProfile']); ////Display Profile
 
+    Route::get('countries',[CountryController::class,"index"]); ///show countries
+
+    Route::get('studies',[StudyController::class,"index"]); ///show studies
+
+    Route::get('categories',[CategoryController::class,"index"]); ///show studies
+
     Route::post('delete-account', [ProfileController::class, 'deleteAccount']); ////Delete Account
 
     Route::post('logout', [AuthController::class, 'logout']);  /////logout
@@ -119,6 +128,7 @@ Route::namespace('Api')->middleware(['setLocale'])->group(function () {
     /**************************************Goals********************************************/
 
     Route::post("set-goal",[GoalsController::class,"setGoal"]);
+    Route::get("goals",[GoalsController::class,"index"]);
 
     /************************************************************************************************************/
 

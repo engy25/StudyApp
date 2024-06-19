@@ -309,13 +309,13 @@ $countNotifications = App\Models\Notification::where('user_id', Auth::user()->id
                       <div class="flex-shrink-0 me-3">
                         <div class="avatar">
                           <a href="{{ route("deliveries.show", ["delivery" => $deliveryNumber]) }}">
-                              <img src="{{ $driver->image }}" alt class="h-auto rounded-circle">
+                              <img src="{{ $driver->image }}" alt class="h-auto rounded-circle"style="max-height: 38px; max-width:21px">
                           </a>
                       </div>
                       </div>
                       <div class="flex-grow-1">
                         <h6 class="mb-1">{{ $notification->title }}</h6>
-                        <p class="mb-0"><a 
+                        <p class="mb-0"><a
                           href="{{ route("orders.show",["order"=>$notification->notifiable_id]) }}">
                           {{ $notification->data }}
                         </a>
@@ -352,7 +352,7 @@ $countNotifications = App\Models\Notification::where('user_id', Auth::user()->id
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
                 <img src="{{ Auth::user() ? Auth::user()->image : asset('assets/img/avatars/1.png') }}" alt
-                  class="h-auto rounded-circle">
+                  class="h-auto rounded-circle" style="max-height: 38px; max-width:26px">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -363,7 +363,7 @@ $countNotifications = App\Models\Notification::where('user_id', Auth::user()->id
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
                         <img src="{{ Auth::user() ? Auth::user()->image : asset('assets/img/avatars/1.png') }}" alt
-                          class="h-auto rounded-circle">
+                          class="h-auto rounded-circle"style="max-height: 38px; max-width:26px">
                       </div>
                     </div>
                     <div class="flex-grow-1">
