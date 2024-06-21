@@ -39,8 +39,11 @@ class GroupResource extends JsonResource
       "category_name" => $this->category->name,
       "category_icon" => $this->category->icon,
       "usersCount" => $this->users_count ?? 0,
-      "group_owner" => $this->fullname,
-      "live_now_count"=>$this->live
+      "group_owner" => $this->owner->fullname,
+      "group_owner_image" => $this->owner->image,
+      "live_now_count"=>$this->live,
+      "is_private"=>$this->is_private,
+      "interests"=>BranchResource::collection($this->interests??[])
 
 
     ];

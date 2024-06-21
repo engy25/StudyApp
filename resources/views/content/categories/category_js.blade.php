@@ -67,12 +67,13 @@
             e.preventDefault();
 
             let name = $('#name').val();
-
+            let description = $('#description').val();
             let icon = $('#icon')[0].files[0];
 
             var formData = new FormData();
             formData.append('name', name);
             formData.append('icon', icon);
+            formData.append('description', description);
 
 
             $('.errMsgContainer').empty(); // Clear previous error messages

@@ -17,7 +17,8 @@ use App\Http\Controllers\Api\{
   User\FollowController,
   User\CountryController,
   User\StudyController,
-  User\CategoryController
+  User\CategoryController,
+  User\SessionController
 
 };
 
@@ -157,7 +158,13 @@ Route::namespace('Api')->middleware(['setLocale'])->group(function () {
     Route::post("show-favoutrite/{sort}",[FavouritesController::class,"showFavourite"]);
                          /**************************************/
 
+      /**************************************Sessions********************************************/
+    Route::post("focus-sessions/start",[SessionController::class,"startWorking"]);
 
+    Route::post('focus-sessions/{sessionId}/multitask', [SessionController::class, 'multitask']);
+    Route::post('focus-sessions/{sessionId}/break', [SessionController::class, 'takeBreak']);
+    Route::post('focus-sessions/{sessionId}/pause', [SessionController::class, 'pauseSession']);
+    Route::post('focus-sessions/{sessionId}/finish', [SessionController::class, 'finishSession']);
 
     /************************************************************************************************************/
 

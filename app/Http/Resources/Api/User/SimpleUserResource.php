@@ -17,7 +17,8 @@ class SimpleUserResource extends JsonResource
         return [
           "id"=>$this->id,
           "fullname"=>$this->fullname,
-          "image"=>$this->image
+          "image"=>$this->image,
+          'profile_bio'=>$this->profile_bio,
         ];
     }
 }

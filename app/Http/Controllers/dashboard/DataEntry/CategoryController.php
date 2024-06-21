@@ -76,7 +76,7 @@ class CategoryController extends Controller
    */
   public function store(StoreCategoryRequest $request)
   {
-    $category = Category::create(["name" => $request->name, "icon" => $request->icon]);
+    $category = Category::create(["name" => $request->name, "description"=>$request->description,"icon" => $request->icon]);
 
     if ($category) {
       return response()->json([

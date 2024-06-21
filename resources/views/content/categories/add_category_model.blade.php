@@ -20,6 +20,14 @@
           <br>
 
           <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description"></textarea>
+            <span class="text-danger error-message" id="error_description"></span>
+          </div>
+        <br>
+
+
+          <div class="form-group">
             <label for="image">Icon</label>
             <input type="file" name="icon" id="icon" accept="image/*">
             <span class="text-danger error-message" id="error_image"></span>

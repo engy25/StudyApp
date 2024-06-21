@@ -35,11 +35,13 @@ in case of success
             {
                 "id": 1,
                 "name": "Study",
+                "description": "Study Hard",
                 "icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png"
             },
             {
                 "id": 3,
                 "name": "SelfCare",
+                "description": "Focus",
                 "icon": "http://127.0.0.1:8000/storage/app/public/images/category/Focus.png"
             }
         ]

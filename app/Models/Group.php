@@ -20,6 +20,8 @@ class Group extends Model {
       return $this->users()->count();
   }
 
+
+
   public function focusSessions()
   {
     return $this->hasMany(FocusSession::class,"group_id");
@@ -39,6 +41,16 @@ class Group extends Model {
   public function category()
   {
     return $this->belongsTo(Category::class);
+  }
+
+  public function owner()
+  {
+    return $this->belongsTo(User::class,"owner_id");
+  }
+
+  public function interests()
+  {
+    return $this->hasMany(BranchGroup::class,"group_id");
   }
 
 }

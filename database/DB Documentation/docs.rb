@@ -6,6 +6,6 @@ general: #task goal name in it required
 ##features: stopwatchtimer or timeblocktimer
 
 
-
+when user finish update end time 
 
 

@@ -9,6 +9,7 @@ image : users' image,mimes:jpeg,jpg,png,gif|nullable'
 lname :users' last name, nullable|string|between:3,40
 nickname user's nickname, nullable|string|between:3,40
 dob: date of birth of the user, 'nullable|date|date_format:Y-m-d
+'profile_bio'=>'nullable|string|max:200',
 email_address :users email address, nullable|email|max:40
 
 Authorization
@@ -48,6 +49,7 @@ in case of not authentication
             "email": "adin1554@gmail.com",
             "orders_make_This_month": 0,
             "duration_expired": "31 January",
+            "profile_bio": "لا اله لا الله",
             "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMjcyYjc2Y2FkZTk3MGUzMTAzY2E0ZjY3NjJhZmQxYTU1NzZlY2NkMmYyNTU3MjdlZTYzNWMzNGIzODEzN2RhYjYxYzQ1NDQ2MmYzM2RmZjMiLCJpYXQiOjE3MDQzNjc4NzEuMjYyMDYzLCJuYmYiOjE3MDQzNjc4NzEuMjYyMDY0LCJleHAiOjE3MzU5OTAyNzEuMjU2OTY1LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.BJBJSS4nx34AVLCdjmckqx8RTpxSPO2PT5Czo5G4qDOKF5Bv-EsW1GkHVT-ncdHk_xT3v1nCMYjrx-LmRiGGOQ"
         }
     }

@@ -42,6 +42,16 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" name="description" required>{{ $category->description }}</textarea>
+              @error('description')
+              <div class="alert alert-danger" role="alert">
+                  {{ $message }}
+              </div>
+              @enderror
+          </div>
+
             <div class="row mb-3">
               <label class="col-md-2 form-label mb-4"> Icon:</label>
               <div class="col-md-10">

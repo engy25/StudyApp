@@ -105,8 +105,8 @@ function user(page) {
     let search_string = $('#search').val();
     let role = $('#role').val();
     let status = $("#status").val();
-
-
+  console.log(role);
+  console.log(status);
     $.ajax({
       url: "/search-user/",
       method: 'GET',

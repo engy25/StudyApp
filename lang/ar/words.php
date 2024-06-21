@@ -13,7 +13,13 @@ return [
   |
   */
 
-
+  'users'=>'الاونر',
+  'categories'=>'الاصناف',
+  'public'=>'عام',
+  'features'=>'features',
+  'private'=>'خاص',
+  'category'=>'category',
+  'feature'=>'Feature',
   'flag'=>'علم',
   'title'=>'الحكمه',
   'owner'=>'صاحب الحكمه',

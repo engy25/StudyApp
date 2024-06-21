@@ -28,7 +28,8 @@ use App\Http\Controllers\dashboard\DataEntry\{
   CountryController,
   WisdomController,
   FeedController,
-  ShareController
+  ShareController,
+  GroupController
 
 
 };
@@ -191,6 +192,10 @@ Route::group(
     /**to  the Share*/
     Route::Resource('shares', ShareController::class);
     Route::get("/pagination/paginate-share/{user}", [ShareController::class, "paginationShare"]);
+
+    Route::Resource('groups', GroupController::class);
+    Route::get("/pagination/paginate-group", [GroupController::class, "paginationGroup"]);
+    Route::get('/search-group', [GroupController::class, 'searchGroup'])->name('search.group');
     /*------------------------------------------------------------------------- */
 
 

@@ -124,6 +124,10 @@ class User extends Authenticatable
     return $this->hasMany(Provider::class);
   }
 
+  public function groups()
+  {
+    return $this->hasMany(Group::class,"owner_id");
+  }
   public function feedFavourites()
   {
     return $this->morphedByMany(Feed::class, "favoriteable", "favourites");

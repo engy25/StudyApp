@@ -6,6 +6,7 @@ $i=0;
     <tr style="background:#f4f5f7">
       <th class="fw-semibold border-bottom">ID</th>
       <th class="fw-semibold border-bottom">{{ trans('words.name') }}</th>
+      <th class="fw-semibold border-bottom">{{ trans('words.description') }}</th>
       <th class="fw-semibold border-bottom">{{ trans('words.image') }}</th>
 
       <th class="bg-transparent fw-semibold border-bottom">Edit</th>
@@ -26,7 +27,12 @@ $i=0;
 
         </span>
       </td>
+      <td>
+        <span class="text-dark fs-13 fw-semibold">
+          {{ $category->description }}
 
+        </span>
+      </td>
       <td>
         <span class="text-dark fs-13 fw-semibold">
           <img src="{{ $category->icon }}" alt="Icon-Image" style="width: 60px; height:60px">

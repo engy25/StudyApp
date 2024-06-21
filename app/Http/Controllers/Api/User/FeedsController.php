@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\{createPostRequest, MakeLikeRequest, MakeShareRequest};
 use App\Models\{Feed, FeedMedia, User, Share};
-use App\Http\Resources\Api\User\{PostResource, SimpleUserResource, SimplePostResourceWithFav, SimpleShareResource};
+use App\Http\Resources\Api\User\{PostResource, SimpleUserResource, CommentsResource,SimplePostResourceWithFav, SimpleShareResource};
 use App\Helpers\Helpers;
 use App\Traits\FeedMerger;
 use Spatie\Permission\Models\{Role};
@@ -67,15 +67,21 @@ class FeedsController extends Controller
 
     if ($type === "Feed") {
       $resource = SimplePostResourceWithFav::make($model);
+
     } else {
       $resource = SimpleShareResource::make($model);
     }
+
+    $comments=$model->comments()->whereNull('parent_comment_id')->get();
+
     return $this->helper->responseJson(
       'success',
       trans('api.auth_data_retreive_success'),
       200,
       [
         $type => $resource,
+        "comments"=>CommentsResource::collection($comments),
+       
       ]
     );
 

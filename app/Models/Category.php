@@ -39,4 +39,9 @@ class Category extends Model {
 
   }
 
+  public function groups()
+  {
+    return $this->hasMany(Group::class,"category_id");
+  }
+
 }

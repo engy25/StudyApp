@@ -20,10 +20,14 @@ class CreateFocusSessionsTable extends Migration
       $table->datetime('end_time')->nullable();
       $table->boolean('completed')->default(0);
       $table->text('notes')->nullable();
-      $table->boolean('pomodoro_mode')->default(0);
+
+      $table->enum('pomodoro_type', array('beginer', 'standard', 'advanced'))->nullable();
+
       $table->boolean('multitasking_events_mode')->default(0);
       $table->boolean('is_reminder')->default(0);
       $table->boolean("is_online")->default(1);
+      $table->tinyText("no_weekly_goal")->default(0)->nullable();
+      $table->tinyInteger("is_pomodoro")->default(0)->nullable();
     });
   }
 

@@ -11,8 +11,10 @@ class CreateFocusSessionEventsTable extends Migration {
       $table->id();
 			$table->timestamps();
 			$table->bigInteger('focus_session_id')->unsigned();
-			$table->enum('event_type', array('start', 'pause', 'resume', 'finish', 'multitasking'));
+			$table->enum('event_type', array('start', 'pause', 'continue', 'finish', 'multitaskingOn','multitaskingOff'));
+
 			$table->text('details')->nullable();
+      $table->timestamp('event_time')->useCurrent();
 		});
 	}
 

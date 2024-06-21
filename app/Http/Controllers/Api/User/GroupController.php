@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\{CreateGroupRequest, IndexGroupRequest, UpdateGroupRequest};
 use App\Http\Resources\Api\User\CategoryResource;
+use App\Models\BranchGroup;
 use App\Models\Category;
 use App\Traits\ConvertHoursToMinutesTrait;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ class GroupController extends Controller
     $type = $request->type ?? "discover";
     $categoryId = $request->category_id ?? "all";
     $userId = auth("api")->user()->id;
+    $groups_your_own = [];
+    $categories=[];
 
 
     $query = Group::query(); //get the query groups
@@ -38,6 +41,7 @@ class GroupController extends Controller
       $query->whereDoesntHave('users', function ($q) use ($userId) {
         $q->where('user_id', $userId);
       });
+      $categories=Category::all();
 
 
     } elseif ($type === 'yourgroups') {
@@ -45,6 +49,7 @@ class GroupController extends Controller
       $query->whereHas("users", function ($q) use ($userId) {
         $q->where('user_id', $userId);
       });
+      $groups_your_own=Group::where("owner_id",$userId)->get();
     }
 
     /// if the user send the category_id
@@ -52,15 +57,16 @@ class GroupController extends Controller
       $query->where("category_id", $categoryId);
     }
 
-    $groups = $query->paginate(PAGINATION_COUNT);
+    $groups = $query->get();
 
     return $this->helper->responseJson(
       'success',
       trans('api.auth_data_retreive_success'),
       200,
       [
-        'categories' => CategoryResource::collection(Category::all()),
-        'groups' => GroupResource::collection($groups)->response()->getData(true),
+        'categories' => CategoryResource::collection($categories),
+        'groups' => GroupResource::collection($groups),
+        'groups_your_own' => GroupResource::collection($groups_your_own),
       ]
     );
 
@@ -69,6 +75,7 @@ class GroupController extends Controller
   public function show($group_id)
   {
     $group = Group::find($group_id);
+   
 
     if (!$group) {
       return $this->helper->responseJson(
@@ -157,10 +164,9 @@ class GroupController extends Controller
     \DB::beginTransaction();
     try {
 
-
       $userId = auth("api")->user()->id;
 
-      $totalWeeklytimeGoal = $this->convertToMinutes($request->weeklytimegoal_hours, $request->weeklytimegoal_minutes);
+      $totalWeeklytimeGoal = $request->weeklytimegoal_hours ? $this->convertToMinutes($request->weeklytimegoal_hours, $request->weeklytimegoal_minutes) : null;
       $totalDuration = $this->convertToMinutes($request->hours, $request->minutes);
 
 
@@ -173,11 +179,23 @@ class GroupController extends Controller
         "goal_id" => $request->goal_id,
         "bio" => $request->bio,
         "feature_id" => $request->feature_id,
-        "code" => Str::random(7)
+        "code" => Str::random(7),
+        "is_private" => $request->is_private ?? 0,
+        "is_no_weekly_goal" => $request->is_no_weekly_goal ?? 0
       ]);
 
-      //Assign The Admin User In His Group
-      GroupUser::create(["user_id" => $userId, "group_id" => $group->id]);
+      //Assign The interests to  the Group
+
+      foreach ($request->interests as $interest) {
+        BranchGroup::create([
+          "group_id" => $group->id,
+          "branch_id" => $interest
+        ]);
+
+      }
+
+      // //Assign The Admin User In His Group
+      // GroupUser::create(["user_id" => $userId, "group_id" => $group->id]);
 
       \DB::commit();
 
@@ -203,11 +221,12 @@ class GroupController extends Controller
   //search group by the name or the code
   public function SearchGroup($keyword)
   {
-    $groups = Group::where(function ($query) use ($keyword) {
-      $query->where('code', 'LIKE', "%{$keyword}%")
-        ->orWhere('name', 'LIKE', "%{$keyword}%")
-        ->orWhere('bio', 'LIKE', "%{$keyword}%");
-    })
+    $groups = Group::where("is_private", 0)->
+      where(function ($query) use ($keyword) {
+        $query->where('code', 'LIKE', "%{$keyword}%")
+          ->orWhere('name', 'LIKE', "%{$keyword}%")
+          ->orWhere('bio', 'LIKE', "%{$keyword}%");
+      })
       ->paginate(PAGINATION_COUNT);
 
     return $this->helper->responseJson(

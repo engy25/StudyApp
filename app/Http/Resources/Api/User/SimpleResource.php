@@ -31,6 +31,7 @@ class SimpleResource extends JsonResource
             'following_counts'=>$this->followingCounts,
             'follower_counts'=>$this->followerCounts,
             'posts_counts'=>$this->feedCounts,
+            'profile_bio'=>$this->profile_bio,
             'token' => $this->when($this->token, $this->token),
 
 

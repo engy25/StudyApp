@@ -70,7 +70,7 @@ class CommentController extends Controller
       trans('api.auth_data_retreive_success'),
       200,
       [
-        'users' => CommentsResource::collection($comments)->response()->getData(true),
+        'comments' => CommentsResource::collection($comments)->response()->getData(true),
       ]
     );
 

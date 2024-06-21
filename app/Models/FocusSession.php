@@ -12,7 +12,12 @@ class FocusSession extends Model {
 
 	public function feature()
 	{
-		return $this->belongsTo('App\Models\\Feature');
+		return $this->belongsTo(Feature::class,"feature_id");
+	}
+
+  public function events()
+	{
+		return $this->hasMany(FocusSessionEvent::class,"focus_session_id");
 	}
 
 }

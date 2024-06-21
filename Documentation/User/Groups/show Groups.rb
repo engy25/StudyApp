@@ -42,9 +42,145 @@ in case of not authentication
 
 
 
- in case of success
+ in case of success in case type yourgroups
  Status :200 ok
  {
+  "result": "success",
+  "message": "Data Retreived Successfully",
+  "status": 200,
+  "data": {
+      "categories": [],
+      "groups": [
+          {
+              "id": 9,
+              "name": "mozakra",
+              "code": "8KCu0JC",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "enjy",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 1
+          },
+          {
+              "id": 10,
+              "name": "mozakra9",
+              "code": "8wHf7IW",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "admin",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 0
+          },
+          {
+              "id": 11,
+              "name": "mozakra99",
+              "code": "TNPaJ4B",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "admin",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 0
+          },
+          {
+              "id": 12,
+              "name": "mo999",
+              "code": "MtLWLX6",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "admin",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 0
+          }
+      ],
+      "groups_your_own": [
+          {
+              "id": 8,
+              "name": "mozakras",
+              "code": "XT5dmCU",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "enjy",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 1
+          },
+          {
+              "id": 9,
+              "name": "mozakra",
+              "code": "8KCu0JC",
+              "bio": "hellos",
+              "duration_in_hours": "2h",
+              "duration_in_minutes": "20m",
+              "weeklytimegoal_in_hours": "2h",
+              "weeklytimegoal_in_minutes": "20m",
+              "category_id": 1,
+              "feature": "Time block timer",
+              "goal_id": 4,
+              "category_name": "Study",
+              "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+              "usersCount": 1,
+              "group_owner": "enjy",
+              "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+              "live_now_count": 0,
+              "is_private": 1
+          }
+      ]
+  }
+}
+
+
+in case of success in case type discover
+  Status :200 ok
+  {
     "result": "success",
     "message": "Data Retreived Successfully",
     "status": 200,
@@ -53,72 +189,38 @@ in case of not authentication
             {
                 "id": 1,
                 "name": "Study",
+                "description": "Study Hard",
                 "icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png"
-            },
-            {
-                "id": 2,
-                "name": "Focus",
-                "icon": "http://127.0.0.1:8000/storage/app/public/images/category/Focus.png"
             },
             {
                 "id": 3,
                 "name": "SelfCare",
+                "description": "Focus",
                 "icon": "http://127.0.0.1:8000/storage/app/public/images/category/Focus.png"
             }
         ],
-        "groups": {
-            "data": [
-                {
-                    "id": 6,
-                    "name": "mozakras",
-                    "code": "MfcbH6F",
-                    "bio": "hellos",
-                    "duration_in_hours": "2h",
-                    "duration_in_minutes": "20m",
-                    "weeklytimegoal_in_hours": "2h",
-                    "weeklytimegoal_in_minutes": "20m",
-                    "category_id": 1,
-                    "feature": "Time block timer",
-                    "goal_id": 4,
-                    "category_name": "Study",
-                    "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
-                    "usersCount": 1,
-                    "group_owner": null,
-                    "live_now_count": null
-                }
-            ],
-            "links": {
-                "first": "http://127.0.0.1:8000/api/groups?page=1",
-                "last": "http://127.0.0.1:8000/api/groups?page=1",
-                "prev": null,
-                "next": null
-            },
-            "meta": {
-                "current_page": 1,
-                "from": 1,
-                "last_page": 1,
-                "links": [
-                    {
-                        "url": null,
-                        "label": "&laquo; Previous",
-                        "active": false
-                    },
-                    {
-                        "url": "http://127.0.0.1:8000/api/groups?page=1",
-                        "label": "1",
-                        "active": true
-                    },
-                    {
-                        "url": null,
-                        "label": "Next &raquo;",
-                        "active": false
-                    }
-                ],
-                "path": "http://127.0.0.1:8000/api/groups",
-                "per_page": 10,
-                "to": 1,
-                "total": 1
+        "groups": [
+            {
+                "id": 8,
+                "name": "mozakras",
+                "code": "XT5dmCU",
+                "bio": "hellos",
+                "duration_in_hours": "2h",
+                "duration_in_minutes": "20m",
+                "weeklytimegoal_in_hours": "2h",
+                "weeklytimegoal_in_minutes": "20m",
+                "category_id": 1,
+                "feature": "Time block timer",
+                "goal_id": 4,
+                "category_name": "Study",
+                "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
+                "usersCount": 1,
+                "group_owner": "enjy",
+                "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+                "live_now_count": 0,
+                "is_private": 1
             }
-        }
+        ],
+        "groups_your_own": []
     }
 }

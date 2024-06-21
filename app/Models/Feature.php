@@ -39,5 +39,10 @@ class Feature extends Model
 
   }
 
+  public function groups()
+  {
+    return $this->hasMany(Group::class,"feature_id");
+  }
+
 
 }

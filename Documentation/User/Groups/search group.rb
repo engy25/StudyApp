@@ -49,8 +49,10 @@ in case of not authentication
                     "category_name": "Study",
                     "category_icon": "http://127.0.0.1:8000/storage/app/public/images/category/Study.png",
                     "usersCount": 1,
-                    "group_owner": null,
-                    "live_now_count": null
+                    "group_owner": "enjy",
+                    "group_owner_image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+                    "live_now_count": null,
+                    "is_private": 0
                 }
             ],
             "links": {

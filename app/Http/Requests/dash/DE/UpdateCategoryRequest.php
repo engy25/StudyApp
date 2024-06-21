@@ -27,6 +27,7 @@ class UpdateCategoryRequest extends FormRequest
 
         'name'=>'required|string|min:3|max:50|unique:categories,name,'.$category_id,
         'icon'=>'nullable|mimes:jpeg,jpg,png,gif|max:10000',
+        'description'=>'required|string|min:10|max:50',
       ];
     }
 }

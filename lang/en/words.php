@@ -13,6 +13,13 @@ return [
   |
   */
 
+  'users'=>'Users',
+  'features'=>'features',
+  'categories'=>'Categories',
+  'public'=>'Public',
+  'private'=>'Private',
+  'category'=>'category',
+  'feature'=>'Feature',
   'flag' => 'Flag',
   'no_phone_assigned' => 'No Phone Assigned',
   'no_image' => 'There Is No Image',

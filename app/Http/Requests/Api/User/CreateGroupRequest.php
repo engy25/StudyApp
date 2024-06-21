@@ -26,14 +26,25 @@ class CreateGroupRequest extends ApiMasterRequest
           "name"=>"required|unique:groups,name|min:3|max:50",
           "bio"=>"required|min:5|max:300",
           "feature_id"=>"required|in:1,2",
-          "weeklytimegoal_minutes"=>'required|integer|min:0|max:59',
-          "weeklytimegoal_hours"=>'required|integer|min:1|max:20',
+          "weeklytimegoal_minutes"=>'nullable|integer|min:0|max:59',
+          "weeklytimegoal_hours"=>'nullable|integer|min:1|max:20',
           "goal_id"=>"required|exists:goals,id",
 
           'hours' => 'required_with:feature,2,|integer|min:1|max:20',  // in case the type is timeblock
           'minutes' => 'required_with:feature,2|integer|min:0|max:59',   // in case the type is timeblock
 
-          "category_id"=>"required|exists:categories,id"
+          "interests"=>"required|array",
+          "interests.*"=>"required|exists:branch_studies,id",
+
+          "category_id"=>"required|exists:categories,id",
+          "is_no_weekly_goal"=>"nullable|in:1,0",
+          "is_private"=>"nullable|in:1,0"
+        ];
+    }
+    public function messages(): array{
+
+       return [
+            "interests.*.exists" => "One or more selected interests are invalid.",
         ];
     }
 

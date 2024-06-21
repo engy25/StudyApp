@@ -16,7 +16,7 @@ Body :
 
 'hours' => 'required_with:feature,2,|integer|min:1|max:20',  // in case the type is timeblock
 'minutes' => 'required_with:feature,2|integer|min:0|max:59',   // in case the type is timeblock
-
+'is_private'=>1 or 0 if you donot send is private the group is public
 "category_id"=>"required|exists:categories,id"
 Authorization
 
